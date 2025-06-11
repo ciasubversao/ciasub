@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLICK - Cia Subversão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-black: #0a0a0a;
+            --color-wine: #800020;
+            --color-wine-dark: #4d0013;
+            --color-wine-light: #b30029;
+            --color-white: #ffffff;
+            --color-off-white: #f2f2f2;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .title-text {
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .wine-bg {
+            background-color: var(--color-wine);
+        }
+        
+        .wine-dark-bg {
+            background-color: var(--color-wine-dark);
+        }
+        
+        .wine-light-bg {
+            background-color: var(--color-wine-light);
+        }
+        
+        .btn-primary {
+            background-color: var(--color-wine);
+            color: var(--color-white);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border: 1px solid var(--color-wine);
+            color: var(--color-white);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--color-white);
+            color: var(--color-white);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--color-wine);
+        }
+        
+        .gallery-item img {
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(128, 0, 32, 0.8);
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .quote {
+            position: relative;
+            font-style: italic;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            left: -1.5rem;
+            top: -1.5rem;
+            opacity: 0.3;
+            color: var(--color-wine);
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--color-wine), transparent);
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23000000'/%3E%3Ccircle cx='400' cy='300' r='150' fill='none' stroke='%23800020' stroke-width='2' stroke-dasharray='10,5'/%3E%3Ccircle cx='400' cy='300' r='100' fill='none' stroke='%23800020' stroke-width='1'/%3E%3Cpath d='M300 300 L500 300' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Cpath d='M400 200 L400 400' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.3'/%3E%3Ccircle cx='400' cy='300' r='5' fill='%23800020'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .about-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23000000'/%3E%3Cpath d='M200 200 L600 400' stroke='%23800020' stroke-width='1' stroke-opacity='0.5'/%3E%3Cpath d='M200 400 L600 200' stroke='%23800020' stroke-width='1' stroke-opacity='0.5'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--color-red);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-wine);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-wine-light);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1.5s ease forwards;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(123, 3, 3, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        /* Specific styling */
+        .wine-border {
+            border: 1px solid var(--color-wine);
+        }
+        
+        .wine-border-left {
+            border-left: 3px solid var(--color-wine);
+        }
+        
+        .wine-text {
+            color: var(--color-wine);
+        }
+        
+        .team-member {
+            border: 1px solid var(--color-wine);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.3);
+        }
+        
+        .agenda-item {
+            border-bottom: 1px solid rgba(128, 0, 32, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .agenda-item:hover {
+            background-color: rgba(128, 0, 32, 0.1);
+        }
+        
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.1);
+            color: var(--color-wine);
+        }
+    </style>
+</head>
+<body>
+     <!-- Navigation -->
+     <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold flex items-center title-font">
+    <span class="text-white">CLI</span><span class="text-[#800020]">C</span><span class="text-white">K</span>
+</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="https://www.ciasubversao.com.br" class="hover:text-[#800020] transition-colors">Home</a>
+                <a href="#about" class="hover:text-[#800020] transition-colors">Sobre</a>
+                <a href="#group" class="hover:text-[#800020] transition-colors">Grupo</a>
+                <a href="#trailer" class="hover:text-[#800020] transition-colors">Teaser</a>
+                <a href="#gallery" class="hover:text-[#800020] transition-colors">Galeria</a>
+                <a href="#reviews" class="hover:text-[#800020] transition-colors">Críticas</a>
+                <a href="#team" class="hover:text-[#800020] transition-colors">Equipe</a>
+                <a href="#contact" class="hover:text-[#800020] transition-colors">Agenda/Contato</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-full bg-[#800020]z-50 p-5">
+            <button id="close-menu" class="absolute top-4 right-4 text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="flex flex-col space-y-4 mt-10" text-white text-lg>
+                <a href="https://www.ciasubversao.com.br" class="hover:text-white transition-colors py-2">Home</a>
+                <a href="#about" class="hover:text-[#800020] transition-colors py-2">Sobre</a>
+                <a href="#group" class="hover:text-[#800020] transition-colors">Grupo</a>
+                <a href="#trailer" class="hover:text-[#800020] transition-colors py-2">Teaser</a>
+                <a href="#gallery" class="hover:text-[#800020] transition-colors py-2">Galeria</a>
+                <a href="#reviews" class="hover:text-[#800020] transition-colors py-2">Críticas</a>
+                <a href="#team" class="hover:text-[#800020] transition-colors py-2">Equipe</a>
+                <a href="#contact" class="hover:text-[#800020] transition-colors py-2">Agenda/Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="title-text text-7xl md:text-9xl mb-4 animate-fadeIn text-white">
+  <span>CLI</span><span class="text-[#800020]">C</span><span>K</span>
+</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fadeIn" style="animation-delay: 0.5s;">
+                "Toda Escolha tem um Som."
+            </p>
+
+            <a href="#about" class="btn-primary inline-block">Conheça o espetáculo</a>
+          
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 about-bg section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Sobre o Espetáculo</h2>
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl mb-4 text-[#800020]">Sinopse</h3>
+                    <p class="mb-6 text-lg leading-relaxed">
+                        Sinopse de “Click”
+Em um ambiente sombrio e claustrofóbico, onde o tempo parece ter apodrecido junto com as relações, “Click” mergulha nas entranhas de uma família dilacerada. Juliano, um homem doente e paralisado, está amarrado à cadeira da sala enquanto sua esposa Bárbara e a filha Sofia o confrontam com décadas de frustrações, rancores e abandono.
+
+Entre delírios poéticos, sarcasmo violento e uma macabra “roleta russa”, mãe e filha conduzem um ritual de despedida, desafiando os limites do afeto, da sanidade e da moralidade. A peça questiona: onde termina o cuidado e começa a punição? Qual é o preço de se viver preso ao passado — ou de não ter vivido nada? Com tensão crescente e diálogos cortantes, “Click” é um retrato cru, psicológico e provocativo sobre culpa, decadência e libertação.
+                    </p>
+                    <p class="mb-6 text-lg leading-relaxed">
+                        "Click" mergulha no universo psicológico da degradação familiar, misturando afeto, violência, delírio e redenção.
+                    </p>
+                    <p class="mb-6 text-lg leading-relaxed">
+                        Um espetáculo que desafia a moral, a sanidade e os limites do amor.
+                    </p>
+                    <div class="mt-8 border-l-4 border-[#800020] pl-4">
+                        <p class="text-xl italic text-[#800020]">"Toda Escolha tem um som."</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl mb-4 text-[#800020]">Ficha Técnica</h3>
+                    <div class="bg-black bg-opacity-50 p-6 border-l-4 border-[#800020]">
+                        <p class="mb-3"><span class="font-bold">Autoria e Direção:</span> Maycon Turell</p>
+                        <p class="mb-3"><span class="font-bold">Elenco:</span> Hebert Freitas, Ghell Silva, Milla Sossi</p>
+                        <p class="mb-3"><span class="font-bold">Classificação:</span> 16 anos</p>
+                        <p class="mb-3"><span class="font-bold">Equipe Técnica:</span> Imani</p>
+                        <p class="mb-3"><span class="font-bold">Duração:</span> 30 min</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Group Section -->
+    <section id="group" class="py-20 wine-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">O Grupo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Nossa História</h3>
+                    <p class="mb-6">
+                        Formado em 2018, o coletivo teatral surgiu da necessidade de criar uma arte que 
+                        não se conformasse com as estruturas tradicionais. Unidos pela busca de uma linguagem 
+                        própria e pelo desejo de explorar temas marginais, o grupo tem construído uma 
+                        trajetória marcada pela experimentação e pela ousadia estética.
+                    </p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4 mt-8">Missão e Valores</h3>
+                    <p class="mb-4">
+                        Acreditamos na potência transformadora da arte como ferramenta de resistência 
+                        e reflexão. Nossa missão é criar experiências teatrais que desafiem o público 
+                        a olhar para suas próprias feridas e reconhecer nelas a possibilidade de beleza.
+                    </p>
+                    <p>
+                        Valorizamos a colaboração, a experimentação e o risco como elementos fundamentais 
+                        do processo criativo, sempre em busca de uma estética que dialogue com as urgências 
+                        do nosso tempo.
+                    </p>
+                </div>
+                
+      <div class="flex items-center justify-center">
+  <img src="https://i.ibb.co/ZpnyXyYk/SITE-CLICK4.png" alt="Cartaz da peça CLICK" class="w-full h-full object-cover rounded" />
+</div>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser Section -->
+<section id="trailer" class="py-20 bg-black section">
+  <div class="container mx-auto px-4">
+    <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Teaser</h2>
+    <div class="max-w-4xl mx-auto">
+      <div class="aspect-w-16 aspect-h-9 relative">
+        <div class="w-full h-0 pb-[56.25%] bg-black border border-[#800020] relative">
+          <!-- YouTube embed real -->
+          <iframe 
+            class="absolute inset-0 w-full h-full rounded-lg"
+            src="https://www.youtube.com/embed/aqw4lGp6uR4"
+            title="Teaser do Espetáculo Click"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-lg italic">
+                    "Um vislumbre da tensão em cena. Assista ao teaser oficial."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-black section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Galeria</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <circle cx="200" cy="150" r="50" fill="#800020" fill-opacity="0.7"/>
+                                <path d="M150 150 L250 150" stroke="#ffffff" stroke-width="2"/>
+                                <path d="M200 100 L200 200" stroke="#ffffff" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"O silêncio entre nós é mais ensurdecedor que qualquer grito."</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <rect x="150" y="100" width="100" height="100" fill="none" stroke="#ffffff" stroke-width="1"/>
+                                <circle cx="200" cy="150" r="30" fill="none" stroke="#800020" stroke-width="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"Cada memória é uma bala carregada no tambor."</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <path d="M150 200 C 200 100, 250 200, 300 150" stroke="#ffffff" stroke-width="1" fill="none"/>
+                                <path d="M100 150 L 150 150" stroke="#800020" stroke-width="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"Às vezes, o amor é apenas o dedo no gatilho."</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <circle cx="200" cy="150" r="70" fill="none" stroke="#800020" stroke-width="2" stroke-dasharray="10,5"/>
+                                <rect x="180" y="130" width="40" height="40" fill="#ffffff" fill-opacity="0.2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"Quando tudo desmorona, só resta o click."</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <path d="M100 150 L 300 150" stroke="#ffffff" stroke-width="1"/>
+                                <path d="M200 50 L 200 250" stroke="#ffffff" stroke-width="1"/>
+                                <circle cx="200" cy="150" r="40" fill="#800020" fill-opacity="0.6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"Família: o primeiro campo de batalha."</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item">
+                    <div class="aspect-w-4 aspect-h-3 bg-black">
+                        <div class="w-full h-0 pb-[75%] relative">
+                            <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                                <rect width="400" height="300" fill="#000000"/>
+                                <path d="M150 100 L 250 200" stroke="#ffffff" stroke-width="1"/>
+                                <path d="M250 100 L 150 200" stroke="#ffffff" stroke-width="1"/>
+                                <circle cx="200" cy="150" r="60" fill="none" stroke="#800020" stroke-width="2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="gallery-caption">
+                        <p class="text-sm">"Entre o perdão e a vingança, há apenas um gatilho."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-black section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Críticas e Comentários</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black p-8 mb-8 border-l-4 border-[#800020]">
+                    <p class="italic mb-4 text-lg quote">
+                        "CLICK é uma experiência teatral visceral que desafia o espectador a confrontar seus próprios demônios familiares. Uma montagem corajosa que não oferece respostas fáceis."
+                    </p>
+                    <p class="text-right text-[#800020]">- Crítica Especializada</p>
+                </div>
+                
+                <div class="bg-black p-8 mb-8 border-l-4 border-[#800020]">
+                    <p class="italic mb-4 text-lg quote">
+                        "A tensão construída ao longo dos 45 minutos é quase insuportável. O público permanece em suspense até o último segundo."
+                    </p>
+                    <p class="text-right text-[#800020]">- Público</p>
+                </div>
+                
+                <div class="bg-black p-8 border-l-4 border-[#800020]">
+                    <p class="italic mb-4 text-lg quote">
+                        "Uma dramaturgia precisa e afiada como uma navalha. Cada palavra é um corte profundo na alma do espectador."
+                    </p>
+                    <p class="text-right text-[#800020]">- Crítica Teatral</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-black section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Equipe e Bastidores</h2>
+            
+            <div class="mb-16">
+                <h3 class="text-2xl mb-6 text-[#800020] text-center">Cia Subversão</h3>
+                <p class="max-w-3xl mx-auto text-center text-lg">
+                    A Cia Subversão é um coletivo teatral dedicado a explorar as fronteiras entre o convencional e o experimental. 
+                    Fundada com o propósito de criar obras que desafiam o público a repensar suas percepções sobre a realidade, 
+                    a companhia tem se destacado por produções que mesclam intensidade dramática e reflexão social.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member bg-black p-6 text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-black border-2 border-[#800020] flex items-center justify-center overflow-hidden">
+                        <img src="https://i.ibb.co/23J83LtR/hebert.png" alt="Nome da Pessoa" class="w-full h-full object-cover" />
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Hebert Freitas</h4>
+                    <p class="text-[#800020] mb-3">Ator</p>
+                    <p class="text-sm">
+                        Hebert é um ator completo, com formação em Artes Cênicas e uma trajetória marcada por dedicação e excelência. Com um currículo vasto e atuação em diversas companhias, ele domina o palco com técnica, presença e sensibilidade. Sua versatilidade transforma personagens em experiências vivas, conquistando plateias por onde passa.
+                    </p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member bg-black p-6 text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-black border-2 border-[#800020] flex items-center justify-center overflow-hidden">
+                        <img src="https://i.ibb.co/MxKnCBJy/ghell.png" alt="Nome da Pessoa" class="w-full h-full object-cover" />
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Ghell Silva</h4>
+                    <p class="text-[#800020] mb-3">Atriz</p>
+                    <p class="text-sm">
+                        Atriz com mais de 40 anos de trajetória nas artes cênicas, Ghell Silva é também diretora, dramaturga e professora de teatro. Após perder a visão em 2020, especializou-se em teatro acessível e passou a integrar a Cia Teatro Cego, reconhecida por espetáculos imersivos no escuro
+                    </p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member bg-black p-6 text-center">
+                    <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-black border-2 border-[#800020] flex items-center justify-center overflow-hidden">
+                        <img src="https://i.ibb.co/ZRZR1wjh/milla.png" alt="Nome da Pessoa" class="w-full h-full object-cover" />
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Milla Sossi</h4>
+                    <p class="text-[#800020] mb-3">Atriz</p>
+                    <p class="text-sm">
+                        Atriz, cantora e compositora, com trajetória artística desde a infância. Apaixonada pelo palco e pela criação, já transitou do teatro infantil ao absurdo, passando pelo drama e pelo musical. Compositora desde os nove anos, guarda canções autorais ainda não reveladas ao mundo. Está sempre mergulhada em arte — onde houver cena, som ou história, lá estará.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="fade-in">
+  <div class="bg-zinc-900 rounded-lg overflow-hidden">
+    
+    <!-- Imagem com altura automática -->
+    <div>
+      <img 
+        src="https://i.ibb.co/Q3LKqk1Y/SITE-CLICK2.png" 
+        alt="Sofia em cena" 
+        class="w-full object-contain">
+    </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+<!-- Material Section 
+<div class="mt-10">
+  <h3 class="text-xl font-semibold mb-3">Material para Download</h3>
+
+   Proposta Completa 
+  <a href="LINK-DA-PROPOSTA.pdf" target="_blank"
+     class="flex items-center bg-black bg-opacity-50 px-2 py-1 border border-[1px] border-deep-red hover:bg-deep-red transition duration-300 mb-2 rounded text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>
+    <span>Proposta Completa (PDF)</span>
+  </a>
+
+   Rider Técnico 
+  <a href="LINK-DO-RIDER.docx" target="_blank"
+     class="flex items-center bg-black bg-opacity-50 px-2 py-1 border border-[1px] border-deep-red hover:bg-deep-red transition duration-300 rounded text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>
+    <span>Rider Técnico (WORD)</span>
+  </a> 
+</div>  -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Agenda / Contato</h2>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <!-- Agenda -->
+<div class="md:w-1/2">
+  <h3 class="text-2xl mb-6 text-[#800020]">Próximas Apresentações</h3>
+
+  <!-- AVISO TEMPORÁRIO -->
+  <div class="bg-black border border-[#800020] p-6 text-center">
+    <p class="text-gray-400 text-lg">Sem apresentações agendadas no momento.</p>
+    <p class="text-sm mt-2">Novas datas serão divulgadas em breve.</p>
+  </div>
+
+  <!-- AGENDA OCULTADA -->
+  <!--
+  <div class="bg-black border border-[#800020] p-6">
+    <div class="agenda-item mb-6 pb-6">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">15 de Outubro, 2023</span>
+        <span class="bg-[#800020] px-3 py-1 text-sm">20:00</span>
+      </div>
+      <p class="mb-2">Teatro Municipal</p>
+      <p class="text-sm text-gray-400">Rua das Artes, 123 - Centro</p>
+    </div>
+
+    <div class="agenda-item mb-6 pb-6">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">22 de Outubro, 2023</span>
+        <span class="bg-[#800020] px-3 py-1 text-sm">19:30</span>
+      </div>
+      <p class="mb-2">Centro Cultural</p>
+      <p class="text-sm text-gray-400">Av. da Cultura, 456 - Jardim</p>
+    </div>
+
+    <div class="agenda-item">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">29 de Outubro, 2023</span>
+        <span class="bg-[#800020] px-3 py-1 text-sm">20:00</span>
+      </div>
+      <p class="mb-2">Teatro Alternativo</p>
+      <p class="text-sm text-gray-400">Rua dos Artistas, 789 - Bairro Novo</p>
+    </div>
+  </div>
+  -->
+</div>
+                
+                <!-- Contact -->
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl mb-6 text-[#800020]">Entre em Contato</h3>
+                    <div class="bg-black border border-[#800020] p-6">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-[#800020] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </div>
+                            <a href="https://instagram.com/ciasubversao" target="_blank" class="hover:text-[#800020] transition-colors">
+                                @ciasubversao
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-[#800020] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                </svg>
+                            </div>
+                            <a href="https://wa.me/5511964658950" target="_blank" class="hover:text-[#800020] transition-colors">
+                                WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-[#800020] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                                </svg>
+                            </div>
+                            <a href="mailto:ciasubversao@gmail.com" class="hover:text-[#800020] transition-colors">
+                                ciasubversao@gmail.com
+                            </a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black border-t border-[#800020]">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-white">
+  CLI<span class="text-[#800020]">C</span>K
+</h2>
+            <p class="mb-6 text-gray-400">Cia Subversão © 2018</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://instagram.com/ciasubversao" target="_blank" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="mailto:ciasubversao@gmail.com" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                    </svg>
+                </a>
+                <a href="https://wa.me/5511964658950" target="_blank" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for gallery images -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Gallery modal functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalClose = document.querySelector('.modal-close');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const svg = item.querySelector('svg').outerHTML;
+                const blob = new Blob([svg], {type: 'image/svg+xml'});
+                const url = URL.createObjectURL(blob);
+                
+                modal.style.display = 'flex';
+                modalImg.src = url;
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+       // Smooth scrolling only for internal anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    const href = anchor.getAttribute('href');
+    if (href.length > 1 && !href.startsWith('http')) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+});
+
+        // Navbar background change on scroll
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d4ca67524a521b',t:'MTc0OTUxNTc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

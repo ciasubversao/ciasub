@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cia Subversão - Arte é corpo em resistência</title>
+    <meta name="description" content="Cia Subversão - Grupo teatral comprometido com os direitos humanos, diversidade e teatro marginal desde 2018.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'blood-red': '#8B0000',
+                        'wine-dark': '#4A0000',
+                        'off-white': '#F5F5F5',
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0F0F0F;
+            color: #F5F5F5;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #8B0000;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-item {
+            overflow: hidden;
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background-color: transparent;
+            border: 2px solid #8B0000;
+            color: #F5F5F5;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #8B0000;
+        }
+        .btn-secondary {
+            background-color: #8B0000;
+            color: #F5F5F5;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #4A0000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-black bg-opacity-90 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-2">
+    <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo" class="h-10 object-contain">
+    <span class="title-font text-xl font-bold">
+  <span class="text-white">CIA</span> <span class="text-blood-red">SUBVERSÃO</span>
+</span>
+</a>
+            
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-blood-red transition-colors">HOME</a>
+                <a href="#sobre" class="nav-link text-white hover:text-blood-red transition-colors">SOBRE</a>
+                <a href="#espetaculos" class="nav-link text-white hover:text-blood-red transition-colors">ESPETÁCULOS</a>
+                <a href="#equipe" class="nav-link text-white hover:text-blood-red transition-colors">EQUIPE</a>
+                <a href="#agenda" class="nav-link text-white hover:text-blood-red transition-colors">AGENDA</a>
+                <a href="#galeria" class="nav-link text-white hover:text-blood-red transition-colors">GALERIA</a>
+                <a href="#contato" class="nav-link text-white hover:text-blood-red transition-colors">CONTATO</a>
+            </nav>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="hidden bg-black bg-opacity-95 w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">HOME</a>
+                <a href="#sobre" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">SOBRE</a>
+                <a href="#espetaculos" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">ESPETÁCULOS</a>
+                <a href="#equipe" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">EQUIPE</a>
+                <a href="#agenda" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">AGENDA</a>
+                <a href="#galeria" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">GALERIA</a>
+                <a href="#contato" class="text-white hover:text-blood-red transition-colors py-2">CONTATO</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-wine-dark/30 to-black/80 z-10"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDAwMDAiLz48Y2lyY2xlIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjQwJSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEIwMDAwIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjEwLDUiLz48L3N2Zz4=')]"></div>
+        <div class="container mx-auto px-4 z-20 text-center">
+            <h1 class="title-font text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-white tracking-tight">
+                CIA <span class="text-blood-red">SUBVERSÃO</span>
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-10 font-light italic">
+                "Arte é corpo em resistência."
+            </p>
+            <a href="#espetaculos" class="btn-secondary px-8 py-4 text-lg font-bold uppercase tracking-wider inline-block">
+                Ver espetáculo em cartaz
+            </a>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="title-font text-4xl md:text-5xl font-bold mb-12 text-center text-white">
+                    SOBRE <span class="text-blood-red">NÓS</span>
+                </h2>
+                
+                <div class="fade-in mb-12">
+                    <h3 class="text-2xl font-bold mb-4 text-blood-red">Nossa História</h3>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        Fundada em 2018, a Cia Subversão nasceu do desejo de criar um teatro que desafia convenções e provoca reflexões. 
+                        Somos um coletivo de artistas comprometidos com a transformação social através da arte, 
+                        buscando dar voz às narrativas marginalizadas e questionar as estruturas de poder estabelecidas.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Ao longo de nossa trajetória, desenvolvemos uma linguagem cênica própria que mescla elementos do teatro físico, 
+                        performance e dramaturgia contemporânea, sempre com um olhar crítico sobre a realidade brasileira.
+                    </p>
+                </div>
+                
+                <div class="fade-in mb-12">
+                    <h3 class="text-2xl font-bold mb-4 text-blood-red">Missão</h3>
+                    <p class="text-lg leading-relaxed">
+                        Criar experiências teatrais transformadoras que desafiem o status quo, 
+                        promovam o diálogo social e ampliem as possibilidades de expressão artística.
+                    </p>
+                </div>
+                
+                <div class="fade-in mb-12">
+                    <h3 class="text-2xl font-bold mb-4 text-blood-red">Visão</h3>
+                    <p class="text-lg leading-relaxed">
+                        Ser reconhecida como uma companhia teatral de referência na criação de obras que 
+                        unem excelência artística e relevância social, contribuindo para a renovação da cena teatral brasileira.
+                    </p>
+                </div>
+                
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-blood-red">Valores</h3>
+                    <ul class="text-lg space-y-3 list-disc pl-6">
+                        <li>Compromisso com os direitos humanos e a justiça social</li>
+                        <li>Valorização da diversidade em todas as suas formas</li>
+                        <li>Experimentação artística e inovação estética</li>
+                        <li>Ética nas relações de trabalho e nos processos criativos</li>
+                        <li>Acessibilidade e democratização do acesso à arte</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Espetáculos Section -->
+    <section id="espetaculos" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
+                ESPETÁ<span class="text-blood-red">CULOS</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           <!-- Espetáculo Principal 1 -->
+<div class="col-span-1 md:col-span-2 lg:col-span-3 fade-in">
+  <div class="bg-black border border-blood-red rounded-lg overflow-hidden flex flex-col md:flex-row">
+    <div class="md:w-1/3 h-auto relative">
+      <img src="https://i.ibb.co/v4NfZZfk/perolas-600x800.png" alt="Cartaz do espetáculo Pérolas" class="w-full h-auto object-contain">
+    </div>
+    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-3xl font-bold text-blood-red">PÉROLAS</h3>
+          <span class="bg-blood-red text-white text-xs font-bold px-3 py-1 rounded-full">EM CARTAZ</span>
+        </div>
+        <p class="text-lg mb-6 leading-relaxed">
+          Em um mergulho profundo nas águas turbulentas da existência humana, "PÉROLAS" apresenta personagens que, como ostras, transformam suas feridas em arte...
+        </p>
+        <div class="flex flex-wrap gap-4 mb-6">
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Duração: 55 min</span>
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Classificação: 16 anos</span>
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Estreia: 2020</span>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://www.ciasubversao.com.br/espetaculoperolas" class="btn-secondary px-6 py-3 font-bold">Saiba mais</a>
+        <a href="https://www.youtube.com/watch?v=cOXumHiAXKo" target="_blank" class="btn-primary px-6 py-3 font-bold">Ver teaser</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Espetáculo Principal 2 
+<div class="col-span-1 md:col-span-2 lg:col-span-3 fade-in">
+  <div class="bg-black border border-blood-red rounded-lg overflow-hidden flex flex-col md:flex-row mt-10">
+    <div class="md:w-1/3 h-auto relative">
+      <img src="https://i.ibb.co/ycq34Fsc/click-600x800.png" alt="Cartaz do espetáculo Click" class="w-full h-auto object-contain">
+    </div>
+    <div class="md:w-2/3 p-6 md:p-8 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-4">
+          <h3 class="text-3xl font-bold text-blood-red">CLICK</h3>
+          <span class="bg-blood-red text-white text-xs font-bold px-3 py-1 rounded-full">EM CARTAZ</span>
+        </div>
+        <p class="text-lg mb-6 leading-relaxed">
+          Preso e debilitado, Juliano encara o acerto de contas com a esposa e a filha. Em um jogo de roleta russa cruel, verdades sufocadas e traumas familiares vêm à tona.
+        </p>
+        <div class="flex flex-wrap gap-4 mb-6">
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Duração: 50 min</span>
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Classificação: 16 anos</span>
+          <span class="bg-black border border-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full">Estreia: 2023</span>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://www.ciasubversao.com.br/espetaculoclick" class="btn-secondary px-6 py-3 font-bold">Saiba mais</a>
+        <a href="https://www.youtube.com/watch?v=cOXumHiAXKo" target="_blank" class="btn-primary px-6 py-3 font-bold">Ver teaser</a>
+      </div>
+    </div>
+  </div> 
+</div>  -->
+                
+                <!-- Outros espetáculos (placeholders) -->
+                <div class="fade-in">
+                    <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 relative">
+                            <img src="https://i.ibb.co/h14xWyx6/600x400-CLICK.png" alt="Imagem da peça Click" class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-white">CLICK</h3>
+                            <p class="text-gray-300 mb-4 flex-grow">
+                                Preso e debilitado, Juliano encara o acerto de contas com a esposa e a filha.
+Em um jogo de roleta russa cruel, verdades sufocadas e traumas familiares vêm à tona.
+Click é um drama psicológico tenso sobre abandono, culpa e a última chance de redenção.
+                            </p>
+                           <div class="flex flex-wrap gap-4">
+                                <a href="https://www.ciasubversao.com.br/espetaculoclick" class="btn-secondary px-6 py-3 font-bold">
+  Saiba mais
+</a>
+                    </div>
+                </div> 
+                
+                <!-- Outros espetáculos (placeholders) 
+
+                <div class="fade-in"> 
+                    <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 relative">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#1a1a1a"/>
+                                <polygon points="50,20 80,70 20,70" fill="#4A0000" opacity="0.7"/>
+                            </svg>
+                        </div> 
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-white">ENTRE MUROS</h3>
+                            <p class="text-gray-300 mb-4 flex-grow">
+                                Uma peça sobre fronteiras físicas e simbólicas que separam pessoas e comunidades.
+                            </p>
+                            <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 relative">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#1a1a1a"/>
+                                <rect x="30" y="30" width="40" height="40" fill="#4A0000" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-white">VOZES DO SILÊNCIO</h3>
+                            <p class="text-gray-300 mb-4 flex-grow">
+                                Um espetáculo documental baseado em histórias de pessoas em situação de vulnerabilidade.
+                            </p>
+                            <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   -->
+    </section> 
+    
+
+    <!-- Equipe Section -->
+    <section id="equipe" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
+                EQUIPE <span class="text-blood-red">ARTÍSTICA</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Membro 1 -->
+                <div class="fade-in">
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                        <div class="h-64 relative">
+                            <img src="https://i.ibb.co/VWMNqV92/maycon.png" alt="Maycon Turell" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-white">Maycon Turell</h3>
+                            <p class="text-blood-red font-semibold mb-3">Ator / Diretor / Dramaturgo e Produtor Artístico</p>
+                            <p class="text-gray-300 text-sm">
+                              Maycon é ator, dramaturgo e produtor artístico com formação sólida e múltiplas criações autorais. Com passagens marcantes por coletivos independentes e festivais, seu trabalho une intensidade cênica, crítica social e poesia. Dono de uma presença forte e expressiva, Maycon transforma suas vivências em arte com coragem e entrega, cativando o público com verdade e profundidade.</p><br>
+                           <a href="https://www.ciasubversao.com.br/mayconturell" class="btn-secondary px-6 py-3 font-bold">Saiba mais</a>
+                        </div>
+                    </div>
+                </div> 
+                
+                <!-- Membro 2 -->
+                <div class="fade-in">
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                        <div class="h-64 relative">
+                            <img src="https://i.ibb.co/WvrBfwMG/hebert.png" alt="Hebert Freitas" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-white">Hebert Freitas</h3>
+                            <p class="text-blood-red font-semibold mb-3">Ator / Produtor</p>
+                            <p class="text-gray-300 text-sm">
+                                Hebert é um ator completo, com formação em Artes Cênicas, estudou no Satyros, onde participou de diversas peças tem uma trajetória marcada por dedicação e excelência. Com um currículo vasto e atuação em diversas companhias, ele domina o palco com técnica, presença e sensibilidade. Sua versatilidade transforma personagens em experiências vivas, conquistando plateias por onde passa.
+                            </p>
+                           <br> <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
+                        </div>
+                    </div>
+                </div> 
+                
+                <!-- Membro 3 -->
+                <div class="fade-in">
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                        <div class="h-64 relative">
+                            <img src="https://i.ibb.co/FbFv2jxj/milla.png" alt="Milla Sossi" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-white">Milla Sossi</h3>
+                            <p class="text-blood-red font-semibold mb-3">Atriz / Cantora </p>
+                            <p class="text-gray-300 text-sm">
+                                Atriz, cantora e compositora, com trajetória artística desde a infância. Apaixonada pelo palco e pela criação, já transitou do teatro infantil ao absurdo, passando pelo drama e pelo musical. Compositora desde os nove anos, guarda canções autorais ainda não reveladas ao mundo. Está sempre mergulhada em arte — onde houver cena, som ou história, lá estará..
+                            </p>
+                           <br> <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
+                        </div>
+                    </div>
+                </div> 
+                
+                <!-- Membro 4 -->
+                <div class="fade-in">
+                    <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                        <div class="h-64 relative">
+                            <img src="https://i.ibb.co/Y4Hqgyhx/vitoria.png" alt="Imani" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-1 text-white">Imani</h3>
+                            <p class="text-blood-red font-semibold mb-3">Atriz / Instrumentista e Produtora Artística</p>
+                            <p class="text-gray-300 text-sm">
+                                Produtora artística com atuação em coletivos independentes e projetos terceirizados. Atua na articulação criativa e executiva de ações culturais com foco em expressão coletiva e identidade periférica.
+
+                            </p>
+                           <br> <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
+                        </div>
+                    </div>
+                </div> 
+    </section>
+
+    <!-- Agenda Section -->
+    <section id="agenda" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
+                AGENDA E <span class="text-blood-red">NOTÍCIAS</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Próximas Apresentações -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 text-blood-red">Próximas Apresentações</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-black border border-gray-800 rounded-lg p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blood-red text-white text-center p-3 rounded-lg min-w-[80px]">
+                                    <span class="block text-2xl font-bold">19</span>
+                                    <span class="block text-sm">JUL</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">PÉROLAS</h4>
+                                    <p class="text-gray-300 mb-2">Céu Luiz Melodia - 18h</p>
+                                    <p class="text-sm text-gray-400 mb-4">Rua Jose Ferreira Crespo, 475 - Jardim São Vicente - São Paulo/SP</p>
+                                   <a href="https://wa.me/5511964658950" target="_blank" class="btn-primary px-4 py-2 text-sm font-bold">
+  Reservar
+</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black border border-gray-800 rounded-lg p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blood-red text-white text-center p-3 rounded-lg min-w-[80px]">
+                                    <span class="block text-2xl font-bold">21</span>
+                                    <span class="block text-sm">JUL</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">PÉROLAS</h4>
+                                    <p class="text-gray-300 mb-2">Céu Luiz Melodia - 20h30</p>
+                                    <p class="text-sm text-gray-400 mb-4">Rua Jose Ferreira Crespo, 475 - Jardim São Vicente - São Paulo/SP</p>
+                                    <a href="https://wa.me/5511964658950" target="_blank" class="btn-primary px-4 py-2 text-sm font-bold">
+  Reservar
+</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black border border-gray-800 rounded-lg p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-blood-red text-white text-center p-3 rounded-lg min-w-[80px]">
+                                    <span class="block text-2xl font-bold">26</span>
+                                    <span class="block text-sm">JUL</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">PÉROLAS</h4>
+                                    <p class="text-gray-300 mb-2">Céu Fregeuesia do Ó - 18h</p>
+                                    <p class="text-sm text-gray-400 mb-4">Rua Crespo de Carvalho, 71 - Freguesia do Ó - São paulo/SP</p>
+                                    <a href="https://wa.me/5511964658950" target="_blank" class="btn-primary px-4 py-2 text-sm font-bold">
+  Reservar
+</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notícias e Convocatórias  -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6 text-blood-red">Notícias e Convocatórias</h3>
+                        
+                            <div class="bg-black border border-gray-800 rounded-lg p-6"> 
+                            <span class="inline-block bg-blood-red text-white text-xs px-3 py-1 rounded-full mb-3">CRITÍCA</span>
+                            <h4 class="text-xl font-bold mb-2">SP Escola de Teatro</h4>
+                            <p class="text-gray-300 mb-2">
+                                        Sem cair no clichê, “Pérolas” surpreende com crônica dilacerante sobre travestis no mundo da prostituição.
+
+                            </p>
+                            <p class="text-sm text-gray-400 mb-4">Publicado em: 07/12/2020 por Isaque Sousa</p>
+                             <a href="https://www.spescoladeteatro.org.br/noticia/sem-cair-no-cliche-perolas-surpreende-com-cronica-dilacerante-sobre-travestis-no-mundo-da-prostituicao" target="_blank" class="btn-primary px-6 py-2 text-sm font-bold mt-8">
+        Leia completo
+    </a>
+                        
+                       <!--  <div class="bg-black border border-gray-800 rounded-lg p-6">
+                            <span class="inline-block bg-blood-red text-white text-xs px-3 py-1 rounded-full mb-3">CHAMADA</span>
+                            <h4 class="text-xl font-bold mb-2">Audição para novo espetáculo</h4>
+                            <p class="text-gray-300 mb-2">
+                                Buscamos atores e atrizes para compor o elenco de nossa nova montagem prevista para 2023.
+                            </p>
+                            <p class="text-sm text-gray-400 mb-4">Data da audição: 10/08/2023</p>
+                            <button class="btn-primary px-4 py-2 text-sm font-bold">Mais informações</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Galeria Section -->
+    <section id="galeria" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
+                GALE<span class="text-blood-red">RIA</span>
+            </h2>
+            
+            <div class="mb-10">
+                <div class="flex justify-center mb-8">
+                    <button class="gallery-filter active px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="all">Todos</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="espetaculos">Espetáculos</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="ensaios">Ensaios</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="bastidores">Bastidores</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Imagem 1 -->
+                    <div class="gallery-item fade-in" data-category="espetaculos">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <circle cx="50" cy="50" r="30" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PÉROLAS</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 2 -->
+                    <div class="gallery-item fade-in" data-category="espetaculos">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <rect x="20" y="20" width="60" height="60" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">CENA 1</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 3 -->
+                    <div class="gallery-item fade-in" data-category="ensaios">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <polygon points="50,20 80,70 20,70" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">ENSAIO</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 4 -->
+                    <div class="gallery-item fade-in" data-category="bastidores">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <circle cx="30" cy="30" r="15" fill="#8B0000" opacity="0.5"/>
+                                <circle cx="70" cy="70" r="15" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">BASTIDORES</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 5 -->
+                    <div class="gallery-item fade-in" data-category="espetaculos">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <rect x="25" y="25" width="50" height="50" rx="10" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">CENA 2</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 6 -->
+                    <div class="gallery-item fade-in" data-category="ensaios">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <path d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="#8B0000" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PROCESSO</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 7 -->
+                    <div class="gallery-item fade-in" data-category="bastidores">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <line x1="20" y1="20" x2="80" y2="80" stroke="#8B0000" stroke-width="5" opacity="0.5"/>
+                                <line x1="80" y1="20" x2="20" y2="80" stroke="#8B0000" stroke-width="5" opacity="0.5"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PREPARAÇÃO</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Imagem 8 -->
+                    <div class="gallery-item fade-in" data-category="espetaculos">
+                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="#2a2a2a"/>
+                                <circle cx="50" cy="50" r="25" stroke="#8B0000" stroke-width="5" fill="none" opacity="0.7"/>
+                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">FINAL</text>
+                            </svg>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+                                    Ver maior
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vídeos -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-blood-red text-center">Vídeos</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Vídeo 1 -->
+<div class="fade-in">
+  <div class="bg-zinc-900 rounded-lg overflow-hidden">
+    <div class="aspect-video relative">
+      <!-- Imagem da thumb do vídeo -->
+      <img src="https://i.ibb.co/h14xWyx6/600x400-CLICK.png" alt="Teaser Click" class="w-full h-full object-cover">
+
+      <!-- Ícone clicável -->
+      <a href="https://youtu.be/aqw4lGp6uR4" target="_blank" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition-all">
+        <div class="w-16 h-16 rounded-full bg-blood-red bg-opacity-80 flex items-center justify-center hover:bg-opacity-100">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </a>
+    </div>
+    <div class="p-4">
+      <h4 class="text-lg font-bold">Trailer - Click</h4>
+      <p class="text-gray-400 text-sm">Duração: 0:46 min</p>
+    </div>
+  </div>
+</div>
+                    
+                    <!-- Vídeo 2 
+                    <div class="fade-in">
+                        <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                            <div class="aspect-video relative">
+                                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 56.25" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="#1a1a1a"/>
+                                    <rect x="35" y="18.125" width="30" height="20" fill="#8B0000" opacity="0.7"/>
+                                    <polygon points="47,23.125 47,33.125 55,28.125" fill="white"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <button class="w-16 h-16 rounded-full bg-blood-red bg-opacity-80 flex items-center justify-center hover:bg-opacity-100 transition-all">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="text-lg font-bold">Entrevista com a diretora</h4>
+                                <p class="text-gray-400 text-sm">Duração: 5:42 min</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
+                FALE <span class="text-blood-red">CONOSCO</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Formulário -->
+                <div class="fade-in">
+                   <form action="https://formsubmit.co/ciasubversao@gmail.com" method="POST" class="bg-black p-8 rounded-lg border border-gray-800">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <h3 class="text-2xl font-bold mb-6 text-blood-red">Envie sua mensagem</h3>
+
+    <div class="mb-6">
+        <label for="name" class="block text-white mb-2">Nome</label>
+        <input type="text" id="name" name="Nome" required class="w-full bg-zinc-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blood-red transition-colors">
+    </div>
+
+    <div class="mb-6">
+        <label for="email" class="block text-white mb-2">E-mail</label>
+        <input type="email" id="email" name="Email" required class="w-full bg-zinc-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blood-red transition-colors">
+    </div>
+
+    <div class="mb-6">
+        <label for="subject" class="block text-white mb-2">Assunto</label>
+        <select id="subject" name="Assunto" required class="w-full bg-zinc-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blood-red transition-colors">
+            <option value="">Selecione um assunto</option>
+            <option value="Informações sobre espetáculos">Informações sobre espetáculos</option>
+            <option value="Proposta de parceria">Proposta de parceria</option>
+            <option value="Imprensa">Imprensa</option>
+            <option value="Outro">Outro</option>
+        </select>
+    </div>
+
+    <div class="mb-6">
+        <label for="message" class="block text-white mb-2">Mensagem</label>
+        <textarea id="message" name="Mensagem" rows="5" required class="w-full bg-zinc-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blood-red transition-colors"></textarea>
+    </div>
+
+    <button type="submit" class="btn-secondary px-6 py-3 font-bold w-full">Enviar mensagem</button>
+
+    <p class="text-gray-400 text-sm mt-4 text-center">
+        Sua mensagem será enviada diretamente para nosso e-mail.
+    </p>
+</form>
+                </div>
+                
+                <!-- Informações de contato -->
+                <div class="fade-in">
+                    <div class="bg-black p-8 rounded-lg border border-gray-800 h-full flex flex-col">
+                        <h3 class="text-2xl font-bold mb-6 text-blood-red">Informações de contato</h3>
+                        
+                        <div class="space-y-8 flex-grow">
+                            <div class="flex items-start">
+                                <div class="bg-blood-red p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">E-mail</h4>
+                                    <a href="mailto:ciasubversao@gmail.com
+" class="text-gray-300 hover:text-blood-red transition-colors">ciasubversao@gmail.com
+</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blood-red p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <a href="https://wa.me/5511964658950" target="_blank" class="block hover:text-deep-red transition duration-300">
+    <div>
+        <h4 class="text-lg font-bold mb-1">WhatsApp</h4>
+        <p class="text-gray-300">(11) 96465-8950</p>
+    </div>
+</a>
+                            </div>
+                            
+                          <!--   <div class="flex items-start">
+                                <div class="bg-blood-red p-3 rounded-lg mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                 <div>
+                                    <h4 class="text-lg font-bold mb-1">Endereço</h4>
+                                    <p class="text-gray-300">Sede da Cia Subversão<br>Rua das Artes, 123<br>São Paulo - SP</p>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mt-10">
+  <h4 class="text-lg font-bold mb-4">Siga-nos nas redes sociais</h4>
+  <div class="flex space-x-4">
+    <a href="https://instagram.com/ciasubversao" target="_blank" class="bg-blood-red hover:bg-wine-dark transition-colors p-3 rounded-full">
+      <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </a>
+
+                         
+                                <!-- <a href="#" class="bg-blood-red hover:bg-wine-dark transition-colors p-3 rounded-full">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="title-font text-2xl font-bold text-blood-red">CIA SUBVERSÃO</h2>
+                    <p class="text-gray-400 mt-2">Arte é corpo em resistência.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:space-x-1">
+                    <a href="#patrocinadores" class="text-gray-300 hover:text-blood-red transition-colors">Patrocinadores:</a>
+                       <img src="https://i.ibb.co/sdYStVmP/EFT.png" alt="Patrocinador 1" class="h-20 w-auto object-contain">
+                       <img src="https://i.ibb.co/JW82nLVJ/TURELL.png" alt="Patrocinador 2" class="h-20 w-auto object-contain">
+                       <img src="https://i.ibb.co/B5bjnc8P/grupocamilla.png" alt="Patrocinador 3" class="h-20 w-auto object-contain">
+                </div> 
+            </div> 
+            
+<hr class="border-t border-gray-800 my-8">
+  <!-- Bloco de Apoio com QR Code -->
+<div class="mt-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+  <!-- QR Code -->
+  <div class="w-40 h-40 flex-shrink-0">
+    <img src="https://i.ibb.co/9HLQtsY3/Captura-de-Tela-2025-06-11-a-s-15-03-49.png" alt="QR Code para doação" class="w-full h-full object-contain rounded-lg border border-gray-700">
+  </div>
+  <!-- Texto -->
+  <div class="text-gray-300 max-w-xl">
+    <h3 class="text-lg font-bold text-blood-red mb-2">Ajude a manter nossa arte viva</h3>
+    <p class="text-sm leading-relaxed mb-3">
+      Somos artistas independentes e seguimos firmes graças ao apoio coletivo.<br>
+      Se você acredita no poder da arte, qualquer contribuição — de qualquer valor — será recebida com gratidão e transformada em resistência poética.
+    </p>
+    <p class="text-white font-bold text-base bg-zinc-800 px-4 py-2 rounded-lg inline-block">
+      CHAVE PIX: <span class="text-white">ciasubversao@gmail.com</span>
+    </p>
+  </div>
+</div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2018 Cia Subversão. Todos os direitos reservados.
+                </p>
+                <div>
+                   <!--  <a href="#" class="text-gray-400 hover:text-blood-red transition-colors text-sm">Política de Privacidade</a>
+                    <span class="text-gray-600 mx-2">|</span>
+                    <a href="#" class="text-gray-400 hover:text-blood-red transition-colors text-sm">Termos de Uso</a>
+                </div>
+            </div>
+        </div>-->
+    </footer>
+
+    <!-- Modal para visualização de imagens -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full">
+            <button id="close-modal" class="absolute top-0 right-0 -mt-12 -mr-12 text-white hover:text-blood-red">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="bg-zinc-900 rounded-lg overflow-hidden">
+                <div id="modal-image-container" class="aspect-video relative">
+                    <svg class="w-full h-full" viewBox="0 0 100 56.25" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="#1a1a1a"/>
+                        <circle cx="50" cy="28.125" r="20" fill="#8B0000" opacity="0.7"/>
+                    </svg>
+                </div>
+                <div class="p-4">
+                    <h4 id="modal-title" class="text-xl font-bold text-white">Título da imagem</h4>
+                    <p id="modal-description" class="text-gray-300 mt-2">Descrição da imagem ou legenda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2');
+            }
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('appear');
+                }
+            });
+        };
+        
+        // Initial check for elements in view
+        fadeInOnScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Gallery filtering
+        const galleryFilters = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Update active filter
+                galleryFilters.forEach(f => f.classList.remove('active', 'text-blood-red', 'border-blood-red'));
+                filter.classList.add('active', 'text-blood-red', 'border-blood-red');
+                
+                const filterValue = filter.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Image modal functionality
+        const imageModal = document.getElementById('image-modal');
+        const closeModal = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        
+        // Open modal when clicking on gallery items
+        document.querySelectorAll('.gallery-item button').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.closest('.gallery-item');
+                const category = item.getAttribute('data-category');
+                
+                // Set modal content based on the clicked item
+                modalTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                modalDescription.textContent = `Imagem da categoria ${category} da Cia Subversão.`;
+                
+                // Show modal
+                imageModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            imageModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside the content
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+    
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d34f3da71c5219',t:'MTc0OTUwMDIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
