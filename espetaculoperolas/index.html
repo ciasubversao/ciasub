@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÉROLAS | Espetáculo Teatral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --wine: #5A0011;
+            --deep-red: #8B0000;
+            --black: #0A0A0A;
+            --off-white: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--off-white);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .content-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .wine-bg {
+            background-color: var(--wine);
+        }
+        
+        .deep-red-bg {
+            background-color: var(--deep-red);
+        }
+        
+        .black-bg {
+            background-color: var(--black);
+        }
+        
+        .wine-text {
+            color: var(--wine);
+        }
+        
+        .deep-red-text {
+            color: var(--deep-red);
+        }
+        
+        .off-white-text {
+            color: var(--off-white);
+        }
+        
+        .nav-link {
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--deep-red);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--deep-red);
+            color: var(--off-white);
+            padding: 12px 28px;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--wine);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            left: 0;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -10px;
+            left: 0;
+            background-color: var(--deep-red);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(90, 0, 17, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .quote-box {
+            position: relative;
+            padding: 2rem;
+            border-left: 4px solid var(--deep-red);
+            background-color: rgba(90, 0, 17, 0.1);
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            color: var(--deep-red);
+            opacity: 0.3;
+        }
+        
+        .pearl-animation {
+            position: relative;
+        }
+        
+        .pearl-animation::before {
+            content: '●';
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(245, 245, 245, 0.8);
+            animation: pearlGlow 3s infinite alternate;
+        }
+        
+        @keyframes pearlGlow {
+            0% {
+                opacity: 0.3;
+                text-shadow: 0 0 5px rgba(245, 245, 245, 0.5);
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(245, 245, 245, 0.9), 0 0 30px rgba(245, 245, 245, 0.5);
+            }
+        }
+        
+        .hero-text {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--black);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav a {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="close-btn" onclick="toggleMobileNav()">✕</div>
+<a href="https://www.ciasubversao.com.br" class="btn-secondary px-6 py-3 font-bold">
+  Home
+</a>    
+<a href="#about" class="nav-link text-white my-4" onclick="toggleMobileNav()">Sobre a Peça</a>
+        <a href="#group" class="nav-link text-white my-4" onclick="toggleMobileNav()">O Grupo</a>
+        <a href="#reviews" class="nav-link text-white my-4" onclick="toggleMobileNav()">Críticas</a>
+        <a href="#gallery" class="nav-link text-white my-4" onclick="toggleMobileNav()">Teaser</a>
+        <a href="#contact" class="nav-link text-white my-4" onclick="toggleMobileNav()">Contato</a>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl md:text-3xl font-bold title-font text-white">
+                <span class="deep-red-text">PÉR</span>OLAS
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="https://www.ciasubversao.com.br" class="nav-link text-white">Home</a></li>
+                    <li><a href="#about" class="nav-link text-white">Sobre a Peça</a></li>
+                    <li><a href="#group" class="nav-link text-white">O Grupo</a></li>
+                    <li><a href="#reviews" class="nav-link text-white">Críticas</a></li>
+                    <li><a href="#gallery" class="nav-link text-white">Teaser</a></li>
+                    <li><a href="#contact" class="nav-link text-white">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="menu-btn md:hidden text-white text-2xl" onclick="toggleMobileNav()">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- SVG background pattern -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+                <defs>
+                    <pattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <circle cx="50" cy="50" r="1" fill="#8B0000" opacity="0.3"></circle>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="#0A0A0A"></rect>
+                <rect width="100%" height="100%" fill="url(#pattern)"></rect>
+            </svg>
+        </div>
+        
+        <!-- Hero content -->
+        <div class="container mx-auto px-4 z-10 text-center">
+            <div class="max-w-4xl mx-auto">
+                <!-- Pearl SVG -->
+                <div class="mb-8">
+                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+                        <circle cx="60" cy="60" r="50" fill="url(#pearl-gradient)" />
+                        <circle cx="45" cy="45" r="8" fill="white" fill-opacity="0.6" />
+                        <defs>
+                            <radialGradient id="pearl-gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(60 60) rotate(90) scale(50)">
+                                <stop offset="0%" stop-color="white" />
+                                <stop offset="50%" stop-color="#f0f0f0" />
+                                <stop offset="100%" stop-color="#d0d0d0" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black title-font mb-6 hero-text">
+                    <span class="deep-red-text">PÉR</span>OLAS
+                </h1>
+                
+                <p class="text-xl md:text-2xl mb-10 italic font-light max-w-2xl mx-auto">
+                    "Uma ostra que nunca foi ferida jamais produzirá uma pérola."
+                </p>
+                
+                <a href="#about" class="btn-primary inline-block">Conheça o espetáculo</a>
+            </div>
+        </div>
+        
+        <!-- Animated pearls -->
+        <div class="pearl-animation" style="top: 20%; left: 15%;"></div>
+        <div class="pearl-animation" style="top: 70%; left: 80%;"></div>
+        <div class="pearl-animation" style="top: 40%; left: 90%;"></div>
+        <div class="pearl-animation" style="top: 80%; left: 30%;"></div>
+        <div class="pearl-animation" style="top: 30%; left: 60%;"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">Sobre a Peça</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 deep-red-text">Sinopse</h3>
+                    <div class="quote-box mb-8">
+                        <p class="italic text-lg">
+                            "PÉROLAS" é uma jornada visceral através das feridas que nos transformam. 
+                            Um espetáculo que explora as dores necessárias para o nascimento da beleza.
+                        </p>
+                    </div>
+                    
+                    <p class="mb-6">
+                        Em um mergulho profundo nas águas turbulentas da existência humana, "PÉROLAS" apresenta 
+                        personagens que, como ostras, transformam suas feridas em arte. O espetáculo navega entre 
+                        momentos de intensa dramaticidade e delicada poesia visual, criando uma experiência 
+                        imersiva que questiona: quanto de dor é necessário para criar beleza?
+                    </p>
+                    
+                    <p>
+                        Através de uma linguagem cênica contemporânea, a peça entrelaça histórias de resistência, 
+                        resiliência e transformação, convidando o público a refletir sobre suas próprias feridas 
+                        e o potencial criativo que emerge delas.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 deep-red-text">Objetivos Artísticos</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-deep-red mr-2">✦</span>
+                            <span>Explorar a estética da marginalidade como potência criativa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-deep-red mr-2">✦</span>
+                            <span>Investigar as fronteiras entre dor e beleza na experiência humana</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-deep-red mr-2">✦</span>
+                            <span>Propor uma dramaturgia visual que dialogue com questões contemporâneas</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-deep-red mr-2">✦</span>
+                            <span>Criar uma experiência sensorial imersiva para o público</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-10">
+                        <h3 class="text-2xl font-semibold mb-4 deep-red-text">Ficha Técnica</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <p class="font-semibold">Direção:</p>
+                                <p>Maycon Turell e Hebert Freitas</p>
+                                </div>
+                        </div>
+                            <p class="font-semibold">Co-Autoria:</p>
+                                <p>Hebert Freitas e Ghell Silva</p>
+                                </div>
+
+                            <div>
+                                <p class="font-semibold">Dramaturgia:</p>
+                                <p>Inspirado no mundo sombrio de Plínio Marcos</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Elenco:</p>
+                                <p>Maycon Turell e Hebert Freitas</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Duração:</p>
+                                <p>55 minutos</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Classificação:</p>
+                                <p>16 anos</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Equipe Técnica:</p>
+                                <p>Milla Sossi e Imani</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group Section -->
+    <section id="group" class="py-20 wine-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">O Grupo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Nossa História</h3>
+                    <p class="mb-6">
+                        Formado em 2018, o coletivo teatral surgiu da necessidade de criar uma arte que 
+                        não se conformasse com as estruturas tradicionais. Unidos pela busca de uma linguagem 
+                        própria e pelo desejo de explorar temas marginais, o grupo tem construído uma 
+                        trajetória marcada pela experimentação e pela ousadia estética.
+                    </p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4 mt-8">Missão e Valores</h3>
+                    <p class="mb-4">
+                        Acreditamos na potência transformadora da arte como ferramenta de resistência 
+                        e reflexão. Nossa missão é criar experiências teatrais que desafiem o público 
+                        a olhar para suas próprias feridas e reconhecer nelas a possibilidade de beleza.
+                    </p>
+                    <p>
+                        Valorizamos a colaboração, a experimentação e o risco como elementos fundamentais 
+                        do processo criativo, sempre em busca de uma estética que dialogue com as urgências 
+                        do nosso tempo.
+                    </p>
+                </div>
+                
+      <div class="flex items-center justify-center">
+  <img src="https://i.ibb.co/Kp8gNsdN/site.png" alt="Cartaz da peça Pérolas" class="w-full h-full object-cover rounded" />
+</div>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">Críticas e Repercussão</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-black bg-opacity-50 p-6 border-l-4 border-deep-red">
+                    <div class="flex items-start mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-deep-red mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        </svg>
+                        <div>
+                            <h4 class="text-xl font-semibold">Revista Teatro Hoje</h4>
+                            <p class="text-sm opacity-70">Maio 2023</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "Uma experiência visceral que desafia os limites do teatro contemporâneo. 
+                        'PÉROLAS' é um mergulho profundo nas águas turvas da condição humana, 
+                        emergindo com beleza e poesia."
+                    </p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="bg-black bg-opacity-50 p-6 border-l-4 border-deep-red">
+                    <div class="flex items-start mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-deep-red mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        </svg>
+                        <div>
+                            <h4 class="text-xl font-semibold">Portal Cultura em Cena</h4>
+                            <p class="text-sm opacity-70">Junho 2023</p>
+                        </div>
+                    </div>
+                    <p class="italic">
+                        "O grupo consegue transformar a dor em arte com uma precisão cirúrgica. 
+                        A direção é impecável, conduzindo o público por uma jornada de transformação 
+                        que ecoa muito além do palco."
+                    </p>
+                </div>
+                
+                <!-- Social Media Mentions -->
+                <div class="md:col-span-2 mt-8">
+                    <h3 class="text-2xl font-semibold mb-6">Nas Redes Sociais</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Social Media Card 1 -->
+                        <div class="bg-black bg-opacity-30 p-4 rounded">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 rounded-full bg-black-400 flex items-center justify-center mr-3">
+                                 <img src="https://i.ibb.co/mr9qmVh5/3.png"/>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">@Joãojesus</p>
+                                    <p class="text-xs opacity-70">Twitter</p>
+                                </div>
+                            </div>
+                            <p class="text-sm">
+                                "Saí do teatro transformado após assistir 'PÉROLAS'. Uma experiência que 
+                                me fez repensar o poder da arte como ferramenta de cura. #PérolasTeatro"
+                            </p>
+                        </div>
+                        
+                        <!-- Social Media Card 2 -->
+                        <div class="bg-black bg-opacity-30 p-4 rounded">
+                             <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 rounded-full bg-black-400 flex items-center justify-center mr-3">
+                                 <img src="https://i.ibb.co/WNpdnwtT/2.png"/>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">@arte.marginal</p>
+                                    <p class="text-xs opacity-70">Instagram</p>
+                                </div>
+                            </div>
+                            <p class="text-sm">
+                                "A estética visual de 'PÉROLAS' é de tirar o fôlego. Cada cena é como 
+                                um quadro vivo que fica gravado na memória. Imperdível!"
+                            </p>
+                        </div>
+                        
+                        <!-- Social Media Card 3 -->
+                        <div class="bg-black bg-opacity-30 p-4 rounded">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 rounded-full bg-black-400 flex items-center justify-center mr-3">
+                                 <img src="https://i.ibb.co/qYkHmqQw/1.png"/>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">@critica_cultural</p>
+                                    <p class="text-xs opacity-70">Facebook</p>
+                                </div>
+                            </div>
+                            <p class="text-sm">
+                                "Um espetáculo necessário em tempos de superficialidade. 'PÉROLAS' nos 
+                                lembra que é preciso mergulhar fundo para encontrar beleza."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Teaser Section -->
+<section id="gallery" class="py-20 deep-red-bg">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">Teaser</h2>
+
+    <!-- Teaser Vídeo Responsivo -->
+    <div class="relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe 
+        class="absolute top-0 left-0 w-full h-full rounded shadow-lg"
+        src="https://www.youtube.com/embed/cOXumHiAXKo" 
+        title="Teaser do Espetáculo Pérolas"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">Contato e Agenda</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Próximas Apresentações</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Show 1 -->
+<div class="border-l-4 border-deep-red pl-4">
+  <p class="text-xl font-semibold">Céu Luiz Melodia - São Miguel Paulista</p>
+  <p class="text-sm opacity-70 mb-2">19 de Julho, 2025 - 18h</p>
+   <p class="text-sm opacity-70 mb-2">21 de Julho, 2025 - 20h30</p>
+  <p>Rua Jose Ferreira Crespo, 475 - Jardim São Vicente - São Paulo/SP</p>
+</div>
+                        <!-- Show 2 -->
+                        <div class="border-l-4 border-deep-red pl-4">
+                            <p class="text-xl font-semibold">Céu Freguesia do Ó</p>
+                            <p class="text-sm opacity-70 mb-2">26 de Julho, 2025 - 18h</p>
+                            <p>Rua Crespo de Carvalho, 71 - Freguesia do Ó - São paulo/SP</p>
+                        </div>
+                        
+                       <!-- Show 3
+<div class="border-l-4 border-deep-red pl-4">
+  <p class="text-xl font-semibold">Céu</p>
+  <p class="text-sm opacity-70 mb-2">22 de Outubro, 2023 - 19h</p>
+  <p>Av. da Resistência, 456 - Zona Leste</p>
+</div>
+-->
+
+<!-- Show 4
+<div class="border-l-4 border-deep-red pl-4">
+  <p class="text-xl font-semibold">Festival de Teatro Contemporâneo</p>
+  <p class="text-sm opacity-70 mb-2">5 de Novembro, 2023 - 21h</p>
+  <p>Teatro Experimental - Rua das Margens, 789</p>
+</div>
+-->
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h3 class="text-2xl font-semibold mb-4">Material para Download</h3>
+                        <a href="https://drive.google.com/file/d/1SJjfSjCSI0QLXNp1ZmKJ02wnig4xxMH8/view?usp=sharing" class="flex items-center bg-black bg-opacity-50 p-4 border border-deep-red hover:bg-deep-red transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>Proposta Completa (PDF)</span>
+                        </a>
+                         </div>
+                         <div> 
+                            
+                       <div class="mt-10"></div>
+                        <a href="https://docs.google.com/document/d/1ww6uzFLLgmt4ukL7iHFt5Wh_TjhqK8Utn3rOleda7wQ/edit?usp=sharing" class="flex items-center bg-black bg-opacity-50 p-4 border border-deep-red hover:bg-deep-red transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>Rider Técnico (WORD)</span>
+                        </a>
+                    
+                    </div>
+                    
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Entre em Contato</h3>
+                    
+                    <p class="mb-8">
+                        Interessado em trazer "PÉROLAS" para o seu espaço cultural? 
+                        Entre em contato conosco para mais informações sobre o espetáculo, 
+                        rider técnico e condições.
+                    </p>
+
+                    
+                    <div class="space-y-6">
+  <div class="flex items-center group">
+    <div class="w-12 h-12 rounded-full bg-deep-red flex items-center justify-center mr-4 group-hover:bg-wine transition duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    </div>
+    <div>
+      <p class="font-semibold">E-mail</p>
+      <a href="mailto:espetaculoperolas@gmail.com"
+         class="group-hover:text-deep-red transition duration-300">
+        espetaculoperolas@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+                        
+                        
+                        <a href="#" class="flex items-center group">
+                            <div class="w-12 h-12 rounded-full bg-deep-red flex items-center justify-center mr-4 group-hover:bg-wine transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">WhatsApp</p>
+                                <p class="group-hover:text-deep-red transition duration-300">(11) 96465-8950</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="flex items-center group">
+                            <div class="w-12 h-12 rounded-full bg-deep-red flex items-center justify-center mr-4 group-hover:bg-wine transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Mais Informações</p>
+                                <p class="group-hover:text-deep-red transition duration-300">Solicite nosso portfólio completo</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black border-t border-deep-red">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">
+                <span class="deep-red-text">PÉR</span>OLAS
+            </h2>
+            
+            <p class="mb-8 max-w-lg mx-auto">
+                "Uma ostra que nunca foi ferida jamais produzirá uma pérola."
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+          <!-- Botão do Facebook
+<a href="https://www.facebook.com/seu_usuario" target="_blank" 
+   class="w-10 h-10 rounded-full border border-deep-red flex items-center justify-center hover:bg-deep-red transition duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M22 12.07C22 6.48 17.52 2 12 2S2 6.48 2 12.07c0 4.99 3.66 9.13 8.44 9.93v-7.03H8.07v-2.9h2.37V9.41c0-2.35 1.4-3.64 3.54-3.64 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.17 0-1.54.73-1.54 1.48v1.77h2.62l-.42 2.9h-2.2v7.03C18.34 21.2 22 17.06 22 12.07z"/>
+  </svg>
+</a>-->
+<a href="https://wa.me/5511964658950" target="_blank" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </a>
+
+<!-- Botão do Instagram -->
+<a href="https://instagram.com/ciasubversao" target="_blank" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="mailto:ciasubversao@gmail.com" class="text-gray-400 hover:text-[#800020] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                    </svg>
+                </a>
+              
+            </div>
+            
+            <p class="text-sm opacity-70">
+                © 2020 PÉROLAS - Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            if (mobileNav.style.display === 'flex') {
+                mobileNav.style.display = 'none';
+            } else {
+                mobileNav.style.display = 'flex';
+            }
+        }
+        
+        // Smooth scrolling for anchor links
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    const href = anchor.getAttribute('href');
+    if (href && href.startsWith("#") && href.length > 1) {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+});
+        
+        // Animation for pearl elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const pearls = document.querySelectorAll('.pearl-animation');
+            
+            pearls.forEach((pearl, index) => {
+                // Set random delay for each pearl
+                const delay = Math.random() * 2;
+                pearl.style.animationDelay = `${delay}s`;
+                
+                // Set random position for each pearl
+                const randomTop = Math.floor(Math.random() * 80) + 10;
+                const randomLeft = Math.floor(Math.random() * 80) + 10;
+                
+                pearl.style.top = `${randomTop}%`;
+                pearl.style.left = `${randomLeft}%`;
+            });
+        });
+        
+        // Parallax effect for sections
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            
+            document.querySelectorAll('.parallax').forEach(element => {
+                const speed = element.getAttribute('data-speed') || 0.5;
+                element.style.backgroundPositionY = `${scrollPosition * speed}px`;
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94a0a7ac94fc521b',t:'MTc0ODk2OTA2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
