@@ -272,52 +272,52 @@
     </style>
 </head>
 <body>
-     <!-- Navigation -->
-     <nav class="navbar fixed w-full z-50 px-4 py-3">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold flex items-center title-font">
-    <span class="text-white">CLI</span><span class="text-[#800020]">C</span><span class="text-white">K</span>
-</a>
+    <header class="navbar fixed w-full z-50 px-4 py-3">
+        <!-- Navigation -->
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold flex items-center title-font">
+                    <span class="text-white">CLI</span><span class="text-[#800020]">C</span><span class="text-white">K</span>
+                </a>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6">
-                <a href="https://www.ciasubversao.com.br" class="hover:text-[#800020] transition-colors">Home</a>
-                <a href="#about" class="hover:text-[#800020] transition-colors">Sobre</a>
-                <a href="#group" class="hover:text-[#800020] transition-colors">Grupo</a>
-                <a href="#trailer" class="hover:text-[#800020] transition-colors">Teaser</a>
-                <a href="#gallery" class="hover:text-[#800020] transition-colors">Galeria</a>
-                <a href="#reviews" class="hover:text-[#800020] transition-colors">Críticas</a>
-                <a href="#team" class="hover:text-[#800020] transition-colors">Elenco</a>
-                <a href="#contact" class="hover:text-[#800020] transition-colors">Agenda/Contato</a>
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="https://www.ciasubversao.com.br" class="hover:text-[#800020] transition-colors">Home</a>
+                    <a href="#about" class="hover:text-[#800020] transition-colors">Sobre</a>
+                    <a href="#group" class="hover:text-[#800020] transition-colors">Grupo</a>
+                    <a href="#trailer" class="hover:text-[#800020] transition-colors">Teaser</a>
+                    <a href="#gallery" class="hover:text-[#800020] transition-colors">Galeria</a>
+                    <a href="#reviews" class="hover:text-[#800020] transition-colors">Críticas</a>
+                    <a href="#team" class="hover:text-[#800020] transition-colors">Elenco</a>
+                    <a href="#contact" class="hover:text-[#800020] transition-colors">Agenda/Contato</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
-            
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-full bg-[#800020]z-50 p-5">
-            <button id="close-menu" class="absolute top-4 right-4 text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="flex flex-col space-y-4 mt-10" text-white text-lg>
-                <a href="https://www.ciasubversao.com.br" class="hover:text-white transition-colors py-2">Home</a>
-                <a href="#about" class="hover:text-[#800020] transition-colors py-2">Sobre</a>
-                <a href="#group" class="hover:text-[#800020] transition-colors">Grupo</a>
-                <a href="#trailer" class="hover:text-[#800020] transition-colors py-2">Teaser</a>
-                <a href="#gallery" class="hover:text-[#800020] transition-colors py-2">Galeria</a>
-                <a href="#reviews" class="hover:text-[#800020] transition-colors py-2">Críticas</a>
-                <a href="#team" class="hover:text-[#800020] transition-colors py-2">Elenco</a>
-                <a href="#contact" class="hover:text-[#800020] transition-colors py-2">Agenda/Contato</a>
-            </div>
-        </div>
-    </nav>
+
+            <!-- Mobile Menu -->
+            <nav id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-full bg-[#800020] bg-opacity-80 z-50">
+                <button id="close-menu" class="absolute top-4 right-4 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="bg-[#800020] bg-opacity-80 flex flex-col space-y-4 mt-10 text-lg p-5">
+                    <a href="https://www.ciasubversao.com.br" class="text-white hover:text-white transition-colors py-2">Home</a>
+                    <a href="#about" class="text-white hover:text-[#800020] transition-colors py-2">Sobre</a>
+                    <a href="#group" class="text-white hover:text-[#800020] transition-colors">Grupo</a>
+                    <a href="#trailer" class="text-white hover:text-[#800020] transition-colors py-2">Teaser</a>
+                    <a href="#gallery" class="text-white hover:text-[#800020] transition-colors py-2">Galeria</a>
+                    <a href="#reviews" class="text-white hover:text-[#800020] transition-colors py-2">Críticas</a>
+                    <a href="#team" class="text-white hover:text-[#800020] transition-colors py-2">Elenco</a>
+                    <a href="#contact" class="text-white hover:text-[#800020] transition-colors py-2">Agenda/Contato</a>
+                </div>
+            </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
@@ -325,7 +325,7 @@
             <h1 class="title-text text-7xl md:text-9xl mb-4 animate-fadeIn text-white">
   <span>CLI</span><span class="text-[#800020]">C</span><span>K</span>
 </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fadeIn" style="animation-delay: 0.5s; font-bold">
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fadeIn font-bold" style="animation-delay: 0.5s;">
                 "Toda Escolha tem um Som."
             </p>
 
