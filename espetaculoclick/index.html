@@ -269,6 +269,9 @@
             transform: scale(1.1);
             color: var(--color-wine);
         }
+        .glowing-text {
+  text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 30px #800020;
+}
     </style>
 </head>
 <body>
@@ -323,7 +326,7 @@
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
         <div class="container mx-auto px-4 text-center">
             <h1 class="title-text text-7xl md:text-9xl mb-4 animate-fadeIn text-white">
-  <span>CLI</span><span class="text-[#800020]">C</span><span>K</span>
+  <span>CLI</span><span class="text-[#000000] glowing-text">C</span><span>K</span>
 </h1>
             <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fadeIn font-bold" style="animation-delay: 0.5s;">
                 "Toda Escolha tem um Som."
@@ -556,35 +559,37 @@ Entre delírios poéticos, sarcasmo violento e uma macabra “roleta russa”, m
     <!-- Bastidores Section -->
 <section id="bastidores" class="py-20 bg-black section">
   <div class="container mx-auto px-4">
-    <h2 class="title-text text-4xl md:text-5xl mb-12 text-center text-white">Bastidores da Gravação</h2>
-    <p class="max-w-3xl mx-auto text-center text-lg">
-                    Em 2020, diante do isolamento imposto pela pandemia, levamos <span class="text-[#800020] font-semibold">"Click"</span> para o formato digital. 
-    A montagem foi adaptada especialmente para a <span class="italic">Satyrianas Online</span>, como forma de manter viva a força do teatro, mesmo à distância. 
-    A experiência rendeu uma gravação intensa, feita com os cuidados possíveis da época, revelando bastidores carregados de emoção, improviso e resistência.
-  </p>
-</div>
-<br>
-<br>
+    <h2 class="title-text text-4xl md:text-5xl mb-6 text-center">Bastidores da Gravação</h2>
+    <p class="text-center text-lg mb-12 max-w-2xl mx-auto">
+      Em 2020, durante a pandemia, adaptamos o espetáculo "Click" para o formato digital. Essa gravação intensa foi feita com cuidado e entrega, mantendo viva a força do teatro mesmo à distância.
+    </p>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- Vídeo 1 -->
-      <div class="w-full aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-full rounded border border-[#800020]"
-          src="https://www.youtube.com/embed/SEU_ID_DE_VIDEO_AQUI"
-          title="Bastidores Click 1" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="relative w-full" style="padding-top: 56.25%;">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full rounded border border-[#800020]"
+          src="https://player.vimeo.com/video/1092650890"
+          title="Bastidores Click 1"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
 
       <!-- Vídeo 2 -->
-      <div class="w-full aspect-w-16 aspect-h-9">
-        <iframe class="w-full h-full rounded border border-[#800020]"
-          src="https://www.youtube.com/embed/SEU_ID_DE_VIDEO_AQUI"
-          title="Bastidores Click 2" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+      <div class="relative w-full" style="padding-top: 56.25%;">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full rounded border border-[#800020]"
+          src="https://player.vimeo.com/video/1092654772"
+          title="Bastidores Click 2"
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
-    </div>
-  </div>
+    </div> 
+  </div>  
 </section>
 
     <!-- Reviews Section -->
