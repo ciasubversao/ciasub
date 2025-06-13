@@ -1049,33 +1049,7 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
             });
         });
         
-        // Image modal functionality
-        const imageModal = document.getElementById('image-modal');
-        const closeModal = document.getElementById('close-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        
-        // Open modal when clicking on gallery items
-        document.querySelectorAll('.gallery-item button').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.closest('.gallery-item');
-                const category = item.getAttribute('data-category');
-                
-                // Set modal content based on the clicked item
-                modalTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-                modalDescription.textContent = `Imagem da categoria ${category} da Cia Subversão.`;
-                
-                // Show modal
-                imageModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Close modal
-        closeModal.addEventListener('click', () => {
-            imageModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
+       
         
         // Close modal when clicking outside the content
         imageModal.addEventListener('click', (e) => {
@@ -1084,7 +1058,25 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
                 document.body.style.overflow = 'auto';
             }
         });
-        
+        // Função para abrir o modal com a imagem clicada
+function openModal(imageUrl) {
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+
+    modalImage.src = imageUrl;
+    imageModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+// Função para fechar o modal
+function closeModal() {
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+
+    modalImage.src = '';
+    imageModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
     
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d34f3da71c5219',t:'MTc0OTUwMDIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
