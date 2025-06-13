@@ -548,145 +548,192 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
             <div class="mb-10">
                 <div class="flex justify-center mb-8">
                     <button class="gallery-filter active px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="all">Todos</button>
-                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="espetaculos">Espetáculos</button>
-                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="ensaios">Ensaios</button>
-                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="bastidores">Bastidores</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="click">Click</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="Pérolas">Pérolas</button>
+                    <button class="gallery-filter px-4 py-2 mx-2 text-white hover:text-blood-red border-b-2 border-transparent hover:border-blood-red transition-all" data-filter="Ensaios">Ensaios</button>
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <!-- Imagem 1 -->
-                    <div class="gallery-item fade-in" data-category="espetaculos">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <circle cx="50" cy="50" r="30" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PÉROLAS</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                 <!-- Galeria com botão -->
+                  <!-- Imagem 1 -->
+<div class="gallery-item fade-in" data-category="click">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem de click" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/RGLCjRrK/IMG-8837.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     
-                    <!-- Imagem 2 -->
-                    <div class="gallery-item fade-in" data-category="espetaculos">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <rect x="20" y="20" width="60" height="60" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">CENA 1</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    <!-- Imagem 2  -->
+<div class="gallery-item fade-in" data-category="click">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/60KPfZSG/IMG-8835.jpg" alt="Imagem de click" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/60KPfZSG/IMG-8835.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     <!-- Imagem 3 -->
-                    <div class="gallery-item fade-in" data-category="ensaios">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <polygon points="50,20 80,70 20,70" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">ENSAIO</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+<div class="gallery-item fade-in" data-category="click">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/m50Yx8mV/IMG-8833.jpg" alt="Imagem de click" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/m50Yx8mV/IMG-8833.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
+                   <!-- Imagem 4  -->
+<div class="gallery-item fade-in" data-category="click">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/MxftRTQw/IMG-8838.jpg" alt="Imagem de click" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/MxftRTQw/IMG-8838.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     
-                    <!-- Imagem 4 -->
-                    <div class="gallery-item fade-in" data-category="bastidores">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <circle cx="30" cy="30" r="15" fill="#8B0000" opacity="0.5"/>
-                                <circle cx="70" cy="70" r="15" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">BASTIDORES</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Imagem 5 
+<div class="gallery-item fade-in" data-category="espetaculos">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem de PÉROLAS" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/RGLCjRrK/IMG-8837.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+ Modal 
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     
-                    <!-- Imagem 5 -->
-                    <div class="gallery-item fade-in" data-category="espetaculos">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <rect x="25" y="25" width="50" height="50" rx="10" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">CENA 2</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                     Imagem 6 
+<div class="gallery-item fade-in" data-category="espetaculos">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem de PÉROLAS" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/RGLCjRrK/IMG-8837.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+ Modal
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     
-                    <!-- Imagem 6 -->
-                    <div class="gallery-item fade-in" data-category="ensaios">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <path d="M20,50 Q50,20 80,50 Q50,80 20,50" fill="#8B0000" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PROCESSO</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                     Imagem 7 
+<div class="gallery-item fade-in" data-category="espetaculos">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem de PÉROLAS" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/RGLCjRrK/IMG-8837.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+ Modal 
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     
-                    <!-- Imagem 7 -->
-                    <div class="gallery-item fade-in" data-category="bastidores">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <line x1="20" y1="20" x2="80" y2="80" stroke="#8B0000" stroke-width="5" opacity="0.5"/>
-                                <line x1="80" y1="20" x2="20" y2="80" stroke="#8B0000" stroke-width="5" opacity="0.5"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">PREPARAÇÃO</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
+                     Imagem 8 
+<div class="gallery-item fade-in" data-category="espetaculos">
+  <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
+    <img src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem de PÉROLAS" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+      <button onclick="openModal('https://i.ibb.co/RGLCjRrK/IMG-8837.jpg')" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+        Ver maior
+      </button>
+    </div>
+  </div>
+</div>
+
+ Modal 
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+  <div class="relative max-w-3xl w-full">
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-2xl font-bold">&times;</button>
+    <img id="modal-image" src="https://i.ibb.co/RGLCjRrK/IMG-8837.jpg" alt="Imagem ampliada" class="w-full h-auto rounded-lg" />
+  </div>
+</div>
                     </div>
-                    
-                    <!-- Imagem 8 -->
-                    <div class="gallery-item fade-in" data-category="espetaculos">
-                        <div class="relative overflow-hidden rounded-lg aspect-square bg-zinc-800">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#2a2a2a"/>
-                                <circle cx="50" cy="50" r="25" stroke="#8B0000" stroke-width="5" fill="none" opacity="0.7"/>
-                                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-size="6">FINAL</text>
-                            </svg>
-                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
-                                <button class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
-                                    Ver maior
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
-            
-            <!-- Vídeos -->
+
+            <!-- Modal -->
+<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden px-4">
+  <div class="relative w-full max-w-3xl max-h-screen">
+    
+    <!-- Botão de fechar -->
+    <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-4xl font-bold z-50 bg-black bg-opacity-50 px-2 rounded-full">
+      &times;
+    </button>
+
+    <!-- Imagem no modal -->
+   <img id="modal-image" src="" alt="Imagem ampliada"
+  class="max-w-full max-h-[80vh] rounded-lg object-contain mx-auto" />
+  </div>
+</div>
+</section>
+          
+
+            <!-- SEÇÃO Vídeos -->
             <div class="mt-16">
                 <h2 class="title-font text-4xl md:text-5xl font-bold mb-16 text-center text-white">
                 VID<span class="text-blood-red">EOS</span>
@@ -1089,5 +1136,16 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
     
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d34f3da71c5219',t:'MTc0OTUwMDIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>
+  function openModal(src) {
+    document.getElementById("modal-image").src = src;
+    document.getElementById("image-modal").classList.remove("hidden");
+  }
+
+  function closeModal() {
+    document.getElementById("image-modal").classList.add("hidden");
+    document.getElementById("modal-image").src = "";
+  }
+</script>
 </body>
 </html>
