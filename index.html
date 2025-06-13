@@ -99,8 +99,21 @@
             background-color: #4A0000;
         }
         .glowing-text {
-  text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 30px #800020;
-}
+            text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 30px #800020;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .close-menu {
+            z-index: 60;
+        }
     </style>
 </head>
 <body>
@@ -108,18 +121,29 @@
     <header class="fixed w-full bg-black bg-opacity-90 z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#home" class="flex items-center gap-2">
-    <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo" class="h-10 object-contain">
-    <span class="title-font text-xl font-bold">
-  <span class="text-white">CIA</span> <span class="text-blood-red">SUBVERSÃO</span>
-</span>
-</a>
+                <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo" class="h-10 object-contain">
+                <span class="title-font text-xl font-bold">
+                    <span class="text-white">CIA</span> 
+                    <span class="text-blood-red">SUBVERSÃO</span>
+                </span>
+            </a>
             
-            <!-- Mobile menu button -->
-            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <!-- Mobile menu buttons (hamburger e X) -->
+            <div class="md:hidden flex items-center gap-2">
+                <!-- Botão hamburguer -->
+                <button id="menu-toggle" class="text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <!-- Botão X -->
+                <button id="close-menu" class="text-white hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
             
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
@@ -134,7 +158,7 @@
         </div>
         
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="hidden bg-black bg-opacity-95 w-full">
+        <nav id="mobile-menu" class="mobile-menu hidden bg-black bg-opacity-95 w-full">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
                 <a href="#home" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">HOME</a>
                 <a href="#sobre" class="text-white hover:text-blood-red transition-colors py-2 border-b border-gray-800">SOBRE</a>
@@ -935,9 +959,38 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
         // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         
+        // Abrir o menu
         menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('open');
+            }, 10);
+
+            // Toggle visibilidade dos botões
+            menuToggle.classList.add('hidden');
+            closeMenuButton.classList.remove('hidden');
+        });
+
+        // Fechar o menu
+        const closeMenu = () => {
+            mobileMenu.classList.remove('open');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+
+            // Toggle visibilidade dos botões
+            closeMenuButton.classList.add('hidden');
+            menuToggle.classList.remove('hidden');
+        };
+
+        closeMenuButton.addEventListener('click', closeMenu);
+
+        // Fechar o menu ao clicar em qualquer link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
         
         // Smooth scrolling for anchor links
