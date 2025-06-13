@@ -113,6 +113,19 @@
         .close-menu {
             z-index: 60;
         }
+      .faixa-em-breve {
+  position: absolute;
+  top: 12px;
+  right: 6px; /* AGORA FICA DENTRO */
+  background-color: #ffffff;
+  color: #020620;
+  padding: 2px 20px;
+  font-size: 11px;
+  font-weight: bold;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  z-index: 10;
+}
     </style>
 </head>
 <body>
@@ -304,12 +317,13 @@
   </div> 
 </div> -->
                 
-                <!-- Outros espetáculos (placeholders) -->
+                <!-- Outros espetáculos (1) -->
                 <div class="fade-in">
                     <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
                         <div class="h-48 relative">
                             <img src="https://i.ibb.co/h14xWyx6/600x400-CLICK.png" alt="Imagem da peça Click" class="absolute inset-0 w-full h-full object-cover">
                         </div>
+                        <span class="absolute top-0 right-0 bg-white text-[#020620] px-3 py-1 text-xs font-bold rounded-bl-md z-10">Em breve</span> 
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-xl font-bold mb-2 text-white">CLICK</h3>
                             <p class="text-gray-300 mb-4 flex-grow">
@@ -321,49 +335,51 @@ Click é um drama psicológico tenso sobre abandono, culpa e a última chance de
                                 <a href="https://www.ciasubversao.com.br/espetaculoclick" class="btn-secondary px-6 py-3 font-bold">
   Saiba mais
 </a>
+                      </div>
                     </div>
-                </div> 
+                   </div>
+                  </div>
                 
-                <!-- Outros espetáculos (placeholders) 
-
-                <div class="fade-in"> 
-                    <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
-                        <div class="h-48 relative">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#1a1a1a"/>
-                                <polygon points="50,20 80,70 20,70" fill="#4A0000" opacity="0.7"/>
-                            </svg>
-                        </div> 
-                        
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2 text-white">ENTRE MUROS</h3>
-                            <p class="text-gray-300 mb-4 flex-grow">
-                                Uma peça sobre fronteiras físicas e simbólicas que separam pessoas e comunidades.
-                            </p>
-                            <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
-                        </div>
-                    </div>
-                </div>
-                
+                <!-- Outros espetáculos (2)
                 <div class="fade-in">
                     <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
                         <div class="h-48 relative">
-                            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100%" height="100%" fill="#1a1a1a"/>
-                                <rect x="30" y="30" width="40" height="40" fill="#4A0000" opacity="0.7"/>
-                            </svg>
+                            <img src="https://i.ibb.co/h14xWyx6/600x400-CLICK.png" alt="Imagem da peça Click" class="absolute inset-0 w-full h-full object-cover">
                         </div>
+                        <span class="absolute top-0 right-0 bg-white text-[#020620] px-3 py-1 text-xs font-bold rounded-bl-md z-10">Em breve</span> 
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold mb-2 text-white">VOZES DO SILÊNCIO</h3>
+                            <h3 class="text-xl font-bold mb-2 text-white">CLICK</h3>
                             <p class="text-gray-300 mb-4 flex-grow">
-                                Um espetáculo documental baseado em histórias de pessoas em situação de vulnerabilidade.
-                            </p>
-                            <button class="btn-primary px-4 py-2 text-sm font-bold self-start">Saiba mais</button>
-                        </div>
+                                Preso e debilitado, Juliano encara o acerto de contas com a esposa e a filha.
+                                Em um jogo de roleta russa cruel, verdades sufocadas e traumas familiares vêm à tona.
+                                Click é um drama psicológico tenso sobre abandono, culpa e a última chance de redenção.</p>
+                              <div class="flex flex-wrap gap-4">
+                                <a href="https://www.ciasubversao.com.br/espetaculoclick" class="btn-secondary px-6 py-3 font-bold">Saiba mais</a>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>   -->
+                   </div>
+                  </div>
+
+                 <!-- Outros espetáculos (3) 
+                <div class="fade-in">
+                    <div class="bg-black border border-gray-800 rounded-lg overflow-hidden h-full flex flex-col">
+                        <div class="h-48 relative">
+                            <img src="https://i.ibb.co/h14xWyx6/600x400-CLICK.png" alt="Imagem da peça Click" class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                        <span class="absolute top-0 right-0 bg-white text-[#020620] px-3 py-1 text-xs font-bold rounded-bl-md z-10">Em breve</span> 
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-white">CLICK</h3>
+                            <p class="text-gray-300 mb-4 flex-grow">
+                                Preso e debilitado, Juliano encara o acerto de contas com a esposa e a filha.
+                                Em um jogo de roleta russa cruel, verdades sufocadas e traumas familiares vêm à tona.
+                                Click é um drama psicológico tenso sobre abandono, culpa e a última chance de redenção.
+                            </p>
+                           <div class="flex flex-wrap gap-4">
+                               <a href="https://www.ciasubversao.com.br/espetaculoclick" class="btn-secondary px-6 py-3 font-bold">Saiba mais</a>
+                           </div>
+                    </div>
+                   </div>
+                  </div> -->
     </section> 
     
 
