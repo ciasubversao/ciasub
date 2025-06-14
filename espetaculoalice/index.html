@@ -3,6 +3,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+     <!-- META OPEN GRAPH -->
+<meta property="og:title" content="CIA SUBVERSÃO - Arte é corpo em resistência">
+<meta property="og:description" content="Companhia de teatro com foco em espetáculos autorais.">
+<meta property="og:image" content="https://i.ibb.co/YB39Y09w/site-capa.jpg">
+<meta property="og:url" content="https://www.ciasubversao.com.br">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cia Subversão">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALICE</title>
@@ -251,6 +259,7 @@
             font-size: 24px;
             cursor: pointer;
             transition: color 0.3s ease;
+            color: white;
         }
         
         .close-modal:hover {
@@ -408,18 +417,20 @@
         }
         
         .testimonial-slide {
-            opacity: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            transition: opacity 0.5s ease;
-        }
-        
-        .testimonial-slide.active {
-            opacity: 1;
-            position: relative;
-        }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+}
         
         .carousel-dots {
             display: flex;
@@ -483,6 +494,16 @@
   color: #ffffff; /* branco */
   font-weight: bold;
 }
+.testimonial-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+    opacity: 1;
+}
     </style>
 </head>
 <body>
@@ -490,13 +511,20 @@
     <div class="custom-cursor"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 border-b border-opacity-20 wine-border">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+   <!-- Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 border-b border-opacity-20 wine-border">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+
+        <!-- Bloco agrupando logo + nome -->
+        <div class="flex items-center gap-2">
+            <!-- Logo S -->
+            <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo S" class="h-9 w-auto">
+
+            <!-- Nome Alice -->
             <a href="#" class="text-2xl font-bold">
-             <h1><span class="letra-a">A</span><span class="letra-resto">LICE</span></h1>
+                <h1><span class="letra-a">A</span><span class="letra-resto">LICE</span></h1>
             </a>
-            
+        </div>
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-4 text-sm font-bold">
                 <a href="https://ciasubversao.com.br/" class="nav-link">HOME</a>
@@ -521,24 +549,32 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-black bg-opacity-95 z-50 border-r border-opacity-30 wine-border p-6">
             <div class="flex justify-between items-center mb-8">
-                <span class="text-xl font-bold title" translate="no"> </span>>
+               <!-- Bloco agrupando logo + nome -->
+        <div class="flex items-center gap-2">
+            <!-- Logo S -->
+            <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo S" class="h-9 w-auto">
+
+            <!-- Nome Alice -->
+            <a href="#" class="text-2xl font-bold">
                 <h1><span class="letra-a">A</span><span class="letra-resto">LICE</span></h1>
+            </a>
+        </div>
                 <button id="close-menu" class="focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <div class="flex flex-col space-y-4">
-                <a href="#" class="nav-link py-2">Home</a>
-                <a href="#sobre" class="nav-link py-2">Sobre</a>
-                <a href="#grupo" class="nav-link py-2">Grupo</a>
-                <a href="#teaser" class="nav-link py-2">Teaser</a>
-                <a href="#galeria" class="nav-link py-2">Galeria</a>
-                <a href="#criticas" class="nav-link py-2">Críticas</a>
-                <a href="#elenco" class="nav-link py-2">Elenco</a>
-                <a href="#agenda" class="nav-link py-2">Agenda</a>
-                <a href="#contato" class="nav-link py-2">Contato</a>
+            <div class="flex flex-col space-y-4 font-bold">
+                <a href="https://ciasubversao.com.br/" class="nav-link py-2">HOME</a>
+                <a href="#sobre" class="nav-link py-2">SOBRE</a>
+                <a href="#grupo" class="nav-link py-2">GRUPO</a>
+                <a href="#teaser" class="nav-link py-2">TEASER</a>
+                <a href="#galeria" class="nav-link py-2">GALERIA</a>
+                <a href="#criticas" class="nav-link py-2">CRÍTICAS</a>
+                <a href="#elenco" class="nav-link py-2">ELENCO</a>
+                <a href="#agenda" class="nav-link py-2">AGENDA</a>
+                <a href="#contato" class="nav-link py-2">CONTATO</a>
             </div>
         </div>
     </header>
@@ -684,17 +720,28 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
 
     <div class="section-divider"></div>
 
-    <!-- Teaser Section 
-    <section id="teaser" class="py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center fade-in">Teaser</h2>
-            <div class="max-w-4xl mx-auto fade-in">
-                <div class="relative pb-[56.25%] h-0 overflow-hidden border-2 wine-border">
-                    <div class="absolute top-0 left-0 w-full h-full bg-gray-900 flex items-center justify-center">
-                        <p class="text-center">Player de vídeo incorporado<br>(YouTube ou Vimeo)</p>
-                    </div>
-                </div>
-                <p class="text-center mt-6 italic">"Quando você não sabe para onde vai, qualquer caminho serve." — Gato de Cheshire</p> -->
+     <!-- Teaser Section -->
+<section id="teaser" class="py-20 px-4">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-12 text-center fade-in">Teaser</h2>
+        <div class="max-w-4xl mx-auto fade-in">
+            <div class="relative pb-[56.25%] h-0 overflow-hidden border-2 wine-border rounded">
+                <iframe 
+                    src="https://player.vimeo.com/video/1093359301" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowfullscreen
+                    class="absolute top-0 left-0 w-full h-full">
+                </iframe>
+            </div>
+            <p class="text-center mt-6 italic">
+                "Quando você não sabe para onde vai, qualquer caminho serve." — Gato de Cheshire
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
                 
                 <!-- Behind the scenes -->
                 <div class="mt-16">
@@ -724,32 +771,32 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
         
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 fade-in">
             <!-- Gallery items -->
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="1">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 1" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="ensaios">
+                <img src="https://i.ibb.co/s9F3K7KR/1.png" alt="Imagem 1" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="2">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 2" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="ensaios">
+                <img src="https://i.ibb.co/B5KsL1Dr/2.png" alt="Imagem 2" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="3">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 3" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="espetaculo">
+                <img src="https://i.ibb.co/mFBNC5vV/3.png" alt="Imagem 3" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="4">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 4" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="espetaculo">
+                <img src="https://i.ibb.co/pj8rc8ZS/4.png" alt="Imagem 4" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="5">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 5" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="bastidores">
+                <img src="https://i.ibb.co/v4J0Tt90/5.png" alt="Imagem 5" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="6">
-                <img src="https://i.ibb.co/tw5JfKsR/TESTE.jpg" alt="Imagem 6" class="w-full h-full object-cover">
+            <div class="gallery-item aspect-square bg-gray-900 flex items-center justify-center cursor-pointer" data-gallery-item="bastidores">
+                <img src="https://i.ibb.co/gFHqyY5N/6.png" alt="Imagem ampliada" class="w-full h-full object-cover">
             </div>
         </div>
 
         <!-- Gallery categories -->
         <div class="mt-12 flex flex-wrap justify-center gap-4 fade-in">
             <button class="btn-wine px-4 py-2 rounded-sm gallery-filter active" data-filter="all">Todas</button>
-            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter" data-filter="ensaios">Ensaios</button>
-            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter" data-filter="espetaculo">Espetáculo</button>
-            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter" data-filter="bastidores">Bastidores</button>
+            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter active" data-filter="ensaios">Ensaios</button>
+            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter active" data-filter="espetaculo">Espetáculo</button>
+            <button class="btn-wine px-4 py-2 rounded-sm gallery-filter active" data-filter="bastidores">Bastidores</button>
         </div>
     </div>
 </section>
@@ -759,19 +806,19 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <div class="bg-gray-900 w-full h-full flex items-center justify-center">
-            <img src="" alt="Imagem ampliada" id="modal-image" class="w-full h-full object-contain">
+            <img src="" alt="Imagem ampliada" id="modal-image" class="max-w-[800px] max-h-[90vh] object-contain">
         </div>
     </div>
 </div>
 
 <div class="section-divider"></div>
 
-    <!-- Críticas Section 
+    <!-- Críticas Section -->
     <section id="criticas" class="py-20 px-4">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold mb-12 text-center fade-in">Críticas</h2>
-            
-             Testimonial carousel 
+
+            <!-- Testimonial carousel -->
             <div class="testimonial-carousel max-w-5xl mx-auto fade-in">
                 <div class="testimonial-slide active">
                     <div class="p-8 border wine-border">
@@ -846,7 +893,7 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
                 </div> 
             </div>
 
-             Press mentions 
+             <!-- Press mentions 
             <div class="mt-16 max-w-5xl mx-auto fade-in">
                 <h3 class="text-2xl font-bold mb-6 text-center">Na Imprensa</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -871,32 +918,42 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
 
     <!-- Elenco Section -->
     <section id="elenco" class="py-20 px-4">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center fade-in">Elenco</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 fade-in">
-                <div class="text-center card">
-                    <div class="w-40 h-40 mx-auto rounded-full bg-gray-900 mb-4 overflow-hidden border wine-border"></div>
-                    <h3 class="text-xl font-bold">Milla Sossi</h3>
-                    <p class="wine-text">Alice</p>
-                    <p class="mt-2 text-sm">Atriz premiada com mais de 15 anos de experiência em teatro e cinema.</p>
-                </div>
-                <div class="text-center card">
-                    <div class="w-40 h-40 mx-auto rounded-full bg-gray-900 mb-4 overflow-hidden border wine-border"></div>
-                    <h3 class="text-xl font-bold">Maycon Turell</h3>
-                    <p class="wine-text">CAvalo/Trasntorno</p>
-                    <p class="mt-2 text-sm">Formado pela Escola de Arte Dramática, especialista em personagens complexos.</p>
-                </div>
-                <div class="text-center card">
-                    <div class="w-40 h-40 mx-auto rounded-full bg-gray-900 mb-4 overflow-hidden border wine-border"></div>
-                    <h3 class="text-xl font-bold">Hebert Freitas</h3>
-                    <p class="wine-text">Aborto/Transtorno</p>
-                    <p class="mt-2 text-sm">Atriz e cantora com formação em teatro físico e dança contemporânea.</p>
-                </div>
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-12 text-center fade-in">Elenco</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
+            <!-- Milla -->
+            <div class="text-center card">
+            <div class="w-40 h-40 mx-auto rounded-full mb-4 overflow-hidden border wine-border">
+            <img src="https://i.ibb.co/ZRZR1wjh/milla.png" alt="Milla Sossi" class="w-full h-full object-cover">
             </div>
-            
-           
+           <h3 class="text-xl font-bold">Milla Sossi</h3>
+           <p class="wine-text font-bold">Alice</p>
+            <p class="mt-2 text-sm">Atriz premiada com mais de 15 anos de experiência em teatro e cinema.</p>
+             </div>
+
+            <!-- Maycon -->
+            <div class="text-center card">
+                <div class="w-40 h-40 mx-auto rounded-full bg-gray-900 mb-4 overflow-hidden border wine-border">
+                    <img src="https://i.ibb.co/3ytL7dfT/MAYCON-26.jpg" alt="Maycon Turell" class="w-full h-full object-cover">
                 </div>
-                
+                <h3 class="text-xl font-bold">Maycon Turell</h3>
+                <p class="wine-text font-bold">Cavalo/Transtorno</p>
+                <p class="mt-2 text-sm">Formado pela Escola de Arte Dramática, especialista em personagens complexos.</p>
+            </div>
+
+            <!-- Hebert -->
+            <div class="text-center card">
+                <div class="w-40 h-40 mx-auto rounded-full bg-gray-900 mb-4 overflow-hidden border wine-border">
+                    <img src="https://i.ibb.co/23J83LtR/hebert.png" alt="Hebert Freitas" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-bold">Hebert Freitas</h3>
+                <p class="wine-text font-bold">Aborto/Transtorno</p>
+                <p class="mt-2 text-sm">Atriz e cantora com formação em teatro físico e dança contemporânea.</p>
+            </div>
+        </div>
+    </div>
+
                 <!-- Awards 
                 <div class="mt-12">
                     <h3 class="text-2xl font-bold mb-6 text-center">Prêmios e Reconhecimentos</h3>
@@ -1025,7 +1082,7 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
                     <div>
                         <h3 class="text-2xl font-bold mb-6 wine-text">Envie uma Mensagem</h3>
 
-<form action="https://formsubmit.co/Cciasubversao@gmail.com" method="POST" class="space-y-4">
+<form action="https://formsubmit.co/ciasubversao@gmail.com" method="POST" class="space-y-4">
     <div>
         <label class="block mb-2">Nome</label>
         <input type="text" name="name" required class="w-full p-2 bg-black border wine-border focus:outline-none focus:ring-1 focus:ring-wine">
@@ -1055,7 +1112,7 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
     </div>
 
     <!-- Configurações ocultas -->
-    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_captcha" value="value">
 
 
     <button type="submit" class="btn-wine px-6 py-2 rounded-sm">Enviar</button>
@@ -1066,34 +1123,39 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-4 border-t wine-border">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="text-2xl font-bold title">ALICE</h2>
-                    <p class="text-sm">Cia Subversão © 2025</p>
-                </div>
-                
-                <div class="flex flex-col items-center md:items-end">
-                    <div class="flex space-x-6 mb-6">
-                        <a href="https://instagram.com/ciasubversao" target="_blank" class="social-icon text-xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="mailto:ciasubversao@gmail.com" class="social-icon text-xl">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://wa.me/5511964658950" target="_blank" class="social-icon text-xl">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                    
-                    <a href="#" class="btn-wine px-6 py-2 rounded-sm flex items-center">
-                        <i class="fas fa-download mr-2"></i> Rider Técnico e Proposta
-                    </a>
-                </div>
+     <footer class="py-12 px-4 border-t wine-border">
+    <div class="container mx-auto">
+        <div class="flex flex-col items-center">
+
+            <!-- Nome ALICE centralizado -->
+            <a href="#" class="text-3xl font-bold mb-2">
+                <h2 class="text-center"><span class="letra-a">A</span><span class="letra-resto">LICE</span></h2>
+            </a>
+
+            <!-- Texto abaixo -->
+            <p class="text-sm text-center mb-6">Cia Subversão © 2025</p>
+
+            <!-- Ícones sociais -->
+            <div class="flex space-x-6 mb-6">
+                <a href="https://instagram.com/ciasubversao" target="_blank" class="social-icon text-xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:ciasubversao@gmail.com" class="social-icon text-xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://wa.me/5511964658950" target="_blank" class="social-icon text-xl">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
             </div>
-            
+
+            <!-- Botão de download -->
+            <a href="#" class="btn-wine px-6 py-2 rounded-sm flex items-center">
+                <i class="fas fa-download mr-2"></i> Rider Técnico e Proposta
+            </a>
+
+        </div>
+    </div>
+</footer>
             <!-- Copyright -->
             <div class="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
                 <p>© 2025 Cia Subversão. Espetáculo da Cia Subversão.</p>
@@ -1103,214 +1165,153 @@ Valorizamos a colaboração, a experimentação e o risco como elementos fundame
     </footer>
 
     <script>
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
-        
-        closeMenuButton.addEventListener('click', () => {
+document.addEventListener("DOMContentLoaded", function() {
+
+    // MENU MOBILE
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+    });
+
+    closeMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
-        
-        // Close mobile menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        function checkFade() {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkFade);
-        window.addEventListener('load', checkFade);
-        
-        // Agenda functionality
-        const agendaContainer = document.getElementById('agenda-container');
-        
-        // Sample events (for demonstration)
-        const events = [
-            // Empty by default
-        ];
-        
-        function formatDate(dateString) {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('pt-BR', options);
-        }
-        
-        function renderEvents() {
-            if (events.length === 0) {
-                agendaContainer.innerHTML = `
-                    <p class="text-center py-12 italic">Sem apresentações agendadas no momento. Novas datas serão divulgadas em breve.</p>
-                `;
-                return;
+    });
+
+    // FADE IN
+    const fadeElements = document.querySelectorAll('.fade-in');
+    function checkFade() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
             }
-            
-            // Sort events by date
-            events.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
-            let html = `<div class="space-y-4">`;
-            
-            events.forEach(event => {
-                html += `
-                    <div class="p-4 border wine-border">
-                        <div class="flex flex-col md:flex-row justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold">${formatDate(event.date)}</h3>
-                                <p class="wine-text">${event.time}</p>
-                            </div>
-                            <div class="mt-2 md:mt-0">
-                                <p>${event.location}</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `</div>`;
-            agendaContainer.innerHTML = html;
-        }
-        
-        // Initial render
-        renderEvents();
-        
-        // Custom cursor
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
         });
-        
-        document.addEventListener('mousedown', () => {
-            cursor.style.width = '15px';
-            cursor.style.height = '15px';
-            cursor.style.backgroundColor = 'rgba(122, 13, 63, 0.2)';
+    }
+    window.addEventListener('scroll', checkFade);
+    window.addEventListener('load', checkFade);
+
+    // CURSOR
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+        cursor.style.width = '15px';
+        cursor.style.height = '15px';
+        cursor.style.backgroundColor = 'rgba(122, 13, 63, 0.2)';
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.backgroundColor = 'transparent';
+    });
+
+    const hoverElements = document.querySelectorAll('a, button, .gallery-item');
+    hoverElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursor.style.backgroundColor = 'rgba(122, 13, 63, 0.1)';
         });
-        
-        document.addEventListener('mouseup', () => {
+        element.addEventListener('mouseleave', () => {
             cursor.style.width = '20px';
             cursor.style.height = '20px';
             cursor.style.backgroundColor = 'transparent';
         });
-        
-        // Hover effect for links and buttons
-        const hoverElements = document.querySelectorAll('a, button, .gallery-item');
-        
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.style.width = '40px';
-                cursor.style.height = '40px';
-                cursor.style.backgroundColor = 'rgba(122, 13, 63, 0.1)';
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.style.width = '20px';
-                cursor.style.height = '20px';
-                cursor.style.backgroundColor = 'transparent';
-            });
-        });
-        
-        // Gallery modal
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const galleryModal = document.getElementById('gallery-modal');
-        const closeModal = document.querySelector('.close-modal');
-        
-      const modalImage = document.getElementById('modal-image');
+    });
+
+    // GALERIA MODAL
+    const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryModal = document.getElementById('gallery-modal');
+const modalImage = document.getElementById('modal-image');
+const closeModal = document.querySelector('.close-modal');
 
 galleryItems.forEach(item => {
-    const img = item.querySelector('img');
     item.addEventListener('click', () => {
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
+        const img = item.querySelector('img');
+        const imgSrc = img.getAttribute('src');
+        const imgAlt = img.getAttribute('alt');
+        modalImage.setAttribute('src', imgSrc);
+        modalImage.setAttribute('alt', imgAlt);
         galleryModal.classList.add('active');
     });
 });
-        
-        closeModal.addEventListener('click', () => {
-            galleryModal.classList.remove('active');
+
+closeModal.addEventListener('click', () => {
+    galleryModal.classList.remove('active');
+});
+
+galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+        galleryModal.classList.remove('active');
+    }
+});
+
+    // CARROSSEL DE CRÍTICAS
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    const testimonialDots = document.querySelectorAll('.carousel-dot');
+    const prevButton = document.getElementById('prev-testimonial');
+    const nextButton = document.getElementById('next-testimonial');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        testimonialSlides.forEach(slide => slide.classList.remove('active'));
+        testimonialDots.forEach(dot => dot.classList.remove('active'));
+        testimonialSlides[index].classList.add('active');
+        testimonialDots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    testimonialDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
         });
-        
-        // Close modal when clicking outside
-        galleryModal.addEventListener('click', (e) => {
-            if (e.target === galleryModal) {
-                galleryModal.classList.remove('active');
-            }
-        });
-        
-        // Testimonial carousel
-        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-        const testimonialDots = document.querySelectorAll('.carousel-dot');
-        const prevButton = document.getElementById('prev-testimonial');
-        const nextButton = document.getElementById('next-testimonial');
-        let currentSlide = 0;
-        
-        function showSlide(index) {
-            testimonialSlides.forEach(slide => slide.classList.remove('active'));
-            testimonialDots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonialSlides[index].classList.add('active');
-            testimonialDots[index].classList.add('active');
-            currentSlide = index;
-        }
-        
-        testimonialDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
-        
-        prevButton.addEventListener('click', () => {
-            let newIndex = currentSlide - 1;
-            if (newIndex < 0) newIndex = testimonialSlides.length - 1;
-            showSlide(newIndex);
-        });
-        
-        nextButton.addEventListener('click', () => {
-            let newIndex = currentSlide + 1;
-            if (newIndex >= testimonialSlides.length) newIndex = 0;
-            showSlide(newIndex);
-        });
-        
-        // Auto-rotate testimonials
-        setInterval(() => {
-            let newIndex = currentSlide + 1;
-            if (newIndex >= testimonialSlides.length) newIndex = 0;
-            showSlide(newIndex);
-        }, 8000);
-        
-        // Gallery filter
-        const galleryFilters = document.querySelectorAll('.gallery-filter');
-        
-        galleryFilters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                galleryFilters.forEach(f => f.classList.remove('active'));
-                filter.classList.add('active');
-                
-                // In a real implementation, this would filter the gallery items
-                // For this demo, we're just showing the filter UI
-            });
-        });
-    </script>
+    });
+
+    prevButton.addEventListener('click', () => {
+        let newIndex = currentSlide - 1;
+        if (newIndex < 0) newIndex = testimonialSlides.length - 1;
+        showSlide(newIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        let newIndex = currentSlide + 1;
+        if (newIndex >= testimonialSlides.length) newIndex = 0;
+        showSlide(newIndex);
+    });
+
+    setInterval(() => {
+        let newIndex = currentSlide + 1;
+        if (newIndex >= testimonialSlides.length) newIndex = 0;
+        showSlide(newIndex);
+    }, 8000);
+
+    showSlide(0); // inicia no primeiro slide
+
+});
+</script>
+
+
+
+
+
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94fa132ff4829410',t:'MTc0OTkwNjcwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
