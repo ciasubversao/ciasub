@@ -706,31 +706,6 @@ Entre delírios poéticos, sarcasmo violento e uma macabra “roleta russa”, m
     </section>
 
  
-<!-- Material Section 
-<div class="mt-10">
-  <h3 class="text-xl font-semibold mb-3">Material para Download</h3>
-
-   Proposta Completa 
-  <a href="LINK-DA-PROPOSTA.pdf" target="_blank"
-     class="flex items-center bg-black bg-opacity-50 px-2 py-1 border border-[1px] border-deep-red hover:bg-deep-red transition duration-300 mb-2 rounded text-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-    <span>Proposta Completa (PDF)</span>
-  </a>
-
-   Rider Técnico 
-  <a href="LINK-DO-RIDER.docx" target="_blank"
-     class="flex items-center bg-black bg-opacity-50 px-2 py-1 border border-[1px] border-deep-red hover:bg-deep-red transition duration-300 rounded text-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-    </svg>
-    <span>Rider Técnico (WORD)</span>
-  </a> 
-</div>  -->
-
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-black section">
         <div class="container mx-auto px-4">
@@ -824,13 +799,12 @@ Entre delírios poéticos, sarcasmo violento e uma macabra “roleta russa”, m
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="py-10 bg-black border-t border-[#800020]">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-4 text-white">
-  CLI<span class="text-[#800020]">C</span>K
-</h2>
-            <p class="mb-6 text-gray-400"> © 2018 CLICK - Todos os direitos reservados</p>
+  CLI<span class="text-[#800020]">C</span>K</h2>
             <div class="flex justify-center space-x-6">
                 <a href="https://instagram.com/ciasubversao" target="_blank" class="text-gray-400 hover:text-[#800020] transition-colors">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -849,13 +823,33 @@ Entre delírios poéticos, sarcasmo violento e uma macabra “roleta russa”, m
                 </a>
             </div>
         </div>
+
+ <!-- Botão centralizado com efeito de brilho -->
+<div class="flex flex-col items-center gap-4 mt-8">
+    <!-- Botão Rider Técnico -->
+    <a href="LINK_DO_RIDER" 
+       class="bg-[#800020] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Rider Técnico
+    </a>
+
+    <!-- Botão Proposta do Espetáculo -->
+    <a href="LINK_DA_PROPOSTA" 
+       class="bg-[#800020] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Proposta do Espetáculo
+    </a>
+</div>
+        
     </footer>
 
-    <!-- Modal for gallery images -->
-    <div id="imageModal" class="modal">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+     <!-- Copyright -->
+            <div class="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
+                <p> ©2018 Cia Subversão. CLICK Espetáculo da Cia Subversão.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+
 
     <script>
         // Intersection Observer for scroll animations

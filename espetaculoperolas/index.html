@@ -760,26 +760,7 @@
 -->
                     </div>
                     
-                    <div class="mt-10">
-                        <h3 class="text-2xl font-semibold mb-4">Material para Download</h3>
-                        <a href="https://drive.google.com/file/d/1SJjfSjCSI0QLXNp1ZmKJ02wnig4xxMH8/view?usp=sharing" class="flex items-center bg-black bg-opacity-50 p-4 border border-deep-red hover:bg-deep-red transition duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span>Proposta Completa (PDF)</span>
-                        </a>
-                         </div>
-                         <div> 
-                            
-                       <div class="mt-10"></div>
-                        <a href="https://docs.google.com/document/d/1ww6uzFLLgmt4ukL7iHFt5Wh_TjhqK8Utn3rOleda7wQ/edit?usp=sharing" class="flex items-center bg-black bg-opacity-50 p-4 border border-deep-red hover:bg-deep-red transition duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span>Rider Técnico (WORD)</span>
-                        </a>
                     
-                    </div>
                     
                 </div>
                 
@@ -841,16 +822,13 @@
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="py-10 bg-black border-t border-deep-red">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6">
                 <span class="deep-red-text">PÉR</span>OLAS
             </h2>
-            
-            <p class="mb-8 max-w-lg mx-auto">
-                "Uma ostra que nunca foi ferida jamais produzirá uma pérola."
-            </p>
             
             <div class="flex justify-center space-x-6 mb-8">
           <!-- Botão do Facebook
@@ -879,12 +857,30 @@
                 </a>
               
             </div>
-            
-            <p class="text-sm opacity-70">
-                © 2020 PÉROLAS - Todos os direitos reservados
-            </p>
+        </div>
+         <!-- Botão centralizado com efeito de brilho -->
+<div class="flex flex-col items-center gap-4 mt-8">
+    <!-- Botão Rider Técnico -->
+    <a href="https://docs.google.com/document/d/1ww6uzFLLgmt4ukL7iHFt5Wh_TjhqK8Utn3rOleda7wQ/edit?usp=sharing" 
+       class="bg-[#800020] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Rider Técnico
+    </a>
+
+    <!-- Botão Proposta do Espetáculo -->
+    <a href="https://drive.google.com/file/d/1SJjfSjCSI0QLXNp1ZmKJ02wnig4xxMH8/view?usp=sharing" 
+       class="bg-[#800020] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Proposta do Espetáculo
+    </a>
+</div>
+    </footer>
+    <!-- Copyright -->
+            <div class="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
+                <p>  ©2020 Cia Subversão. PÉROLAS Espetáculo da Cia Subversão.</p>
+                
+            </div>
         </div>
     </footer>
+
     <script>
         // Mobile navigation toggle
         function toggleMobileNav() {
