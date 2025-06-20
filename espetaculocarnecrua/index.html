@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+     <!-- META OPEN GRAPH -->
+<meta property="og:title" content="CLICK - Toda Escolha tem um som">
+<meta property="og:description" content="Espetáculo da Cia Subversão">
+<meta property="og:image" content="https://i.ibb.co/YB39Y09w/site-capa.jpg">
+<meta property="og:url" content="https://www.ciasubversao.com.br/espetaculoclick">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cia Subversão">
+
+    <link rel="icon" href="https://i.ibb.co/Xwc9Kys/icone-3.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARNE CRUA | Cia Subversão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blood: '#6e6e6e',
+                        dark: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .menu-item {
+            position: relative;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #6E6E6E;
+            transition: width 0.3s ease;
+        }
+
+        .menu-item:hover::after {
+            width: 100%;
+        }
+
+        .active::after {
+            width: 100%;
+        }
+
+        .blood-btn {
+            background-color: #6E6E6E;
+            transition: all 0.3s ease;
+        }
+
+        .blood-btn:hover {
+            background-color: transparent;
+            border: 1px solid #6E6E6E;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .blood-drip {
+            position: absolute;
+            width: 2px;
+            background-color: #6E6E6E;
+            top: 0;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #6E6E6E, transparent);
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #800020;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #600010;
+        }
+        .glowing-text {
+  text-shadow: 0 0 10px #d8d8d8, 0 0 20px #ffffff, 0 0 30px #ffffff;
+}
+
+    </style>
+</head>
+<body class="font-playfair">
+    <div class="noise"></div>
+
+    <!-- Blood drips animation -->
+    <div id="blood-drips"></div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-dark z-50 p-6 shadow-lg">
+        <div class="flex justify-end">
+            <button id="close-menu" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-4 mt-8">
+            <a href="#home" class="text-white font-montserrat text-lg">Home</a>
+            <a href="#about" class="text-white font-montserrat text-lg">Sobre</a>
+            <a href="#group" class="text-white font-montserrat text-lg">Grupo</a>
+            <a href="#criticas" class="text-white font-montserrat text-lg">Críticas</a>
+            <a href="#galeria" class="text-white font-montserrat text-lg">Galeria</a>
+            <a href="#teaser" class="text-white font-montserrat text-lg">Teaser</a>
+            <a href="#contato" class="text-white font-montserrat text-lg">Contato</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="container mx-auto flex justify-between items-center">
+                <a href="#home" class="flex items-center space-x-2">
+                    <!-- Logo-s -->
+                    <img src="https://i.ibb.co/Xwc9Kys/icone-3.png" alt="Logo S" class="h-8 w-auto">
+                    <!-- Texto "CARNE CRUA" estilizado, ao lado da logo-s -->
+                    <div class="text-2xl font-bold flex items-center title-font">
+                        <span class="text-white">CARNE</span><span class="text-[#6E6E6E]">CRUA</span>
+                    </div>
+                </a>
+            <!-- Desktop menu -->
+            <nav class="hidden md:flex space-x-8 font-bold">
+                <a href="https://www.ciasubversao.com.br" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider active">Home</a>
+                <a href="#about" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Sobre</a>
+                <a href="#group" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Grupo</a>
+                <a href="#criticas" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Críticas</a>
+                <a href="#galeria" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Galeria</a>
+                <a href="#teaser" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Teaser</a>
+                <a href="#contato" class="menu-item text-white font-montserrat text-sm uppercase tracking-wider">Contato</a>
+            </nav>
+            
+            <!-- Mobile menu button -->
+            <button id="menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="title-text text-7xl md:text-9xl mb-4 animate-fadeIn text-white">
+  <span>CARNE</span><span class="text-[#000000] glowing-text">CRUA</span>
+</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fadeIn font-bold" style="animation-delay: 0.5s;">
+                "Quem nasce pra ser lixo… não ganha dia de coleta."
+            </p>
+            
+            <a href="#about" class="blood-btn font-montserrat uppercase tracking-wider py-3 px-8 rounded-sm text-white border border-blood hover:text-blood transition-all duration-300 inline-flex items-center">
+                Conhecer o Espetáculo
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blood" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sobre -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-montserrat font-bold mb-12 text-center">SOBRE</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-montserrat text-blood mb-6 font-bold">Sinopse</h3>
+                    <p class="text-lg leading-relaxed">
+                        Em um cenário urbano devastado pela desigualdade, "Carne Crua" expõe as feridas abertas de uma sociedade que consome seus próprios filhos. Através de uma narrativa visceral e poética, o espetáculo mergulha nas entranhas da marginalidade, revelando histórias de corpos que resistem à violência cotidiana. 
+                        <br><br>
+                        Não há redenção fácil neste palco - apenas a verdade nua e crua de existências que se recusam a desaparecer em silêncio. Uma experiência teatral que desafia o público a olhar para o que normalmente escolhemos ignorar.
+                    </p>
+                </div>
+
+                <div class="fade-in">
+                    <h3 class="text-2xl font-montserrat text-blood mb-6 font-bold">Ficha Técnica</h3>
+                    <ul class="space-y-3">
+                        <li><span class="font-montserrat font-semibold">Direção:</span> Marina Alves</li>
+                        <li><span class="font-montserrat font-semibold">Dramaturgia:</span> Maycon Turell</li>
+                        <li><span class="font-montserrat font-semibold">Elenco:</span> Hebert Freitas, Maycon Turell e Milla Sossi</li>
+                        <li><span class="font-montserrat font-semibold">Produção:</span> Cia Subversão</li>
+                        <li><span class="font-montserrat font-semibold">Iluminação:</span> Manu Tecchio</li>
+                        <li><span class="font-montserrat font-semibold">Design Gráfico:</span> Maycon Turell</li>
+                        <li><span class="font-montserrat font-semibold">Duração:</span> 70 minutos</li>
+                        <li><span class="font-montserrat font-semibold">Classificação:</span> 16 anos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+     <!-- Group Section -->
+    <section id="group" class="relative py-20 bg-[#6e6e6e] bg-[url('./imagens/textura-parede.png')] bg-cover bg-center bg-blend-multiply shadow-[inset_0_0_100px_rgba(0,0,0,0.9)]">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-12">Grupo</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Nossa História</h3>
+                    <p class="mb-6">
+                        Formado em 2018, o coletivo teatral surgiu da necessidade de criar uma arte que 
+                        não se conformasse com as estruturas tradicionais. Unidos pela busca de uma linguagem 
+                        própria e pelo desejo de explorar temas marginais, o grupo tem construído uma 
+                        trajetória marcada pela experimentação e pela ousadia estética.
+                    </p>
+                    
+                    <h3 class="text-2xl font-semibold mb-4 mt-8">Missão e Valores</h3>
+                    <p class="mb-4">
+                        Acreditamos na potência transformadora da arte como ferramenta de resistência 
+                        e reflexão. Nossa missão é criar experiências teatrais que desafiem o público 
+                        a olhar para suas próprias feridas e reconhecer nelas a possibilidade de beleza.
+                    </p>
+                    <p>
+                        Valorizamos a colaboração, a experimentação e o risco como elementos fundamentais 
+                        do processo criativo, sempre em busca de uma estética que dialogue com as urgências 
+                        do nosso tempo.
+                    </p>
+                </div>
+                
+      <div class="flex items-center justify-center">
+  <img src="https://i.ibb.co/Kp8gNsdN/site.png" alt="Cartaz da peça Pérolas" class="w-full h-full object-cover rounded" />
+</div>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+
+    <div class="section-divider"></div>
+
+    <!-- Críticas -->
+    <section id="criticas" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-montserrat font-bold mb-12 text-center">CRÍTICAS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <p class="italic mb-4">"Um soco no estômago. 'Carne Crua' é teatro em estado bruto, sem concessões, que nos obriga a encarar o que a sociedade tenta esconder."</p>
+                    <p class="font-montserrat text-sm">— Revista Teatro Hoje</p>
+                </div>
+                
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood/30" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <p class="italic mb-4">"A Cia Subversão consegue o impossível: transformar a dor em poesia sem romantizá-la. Uma experiência teatral que permanece na pele muito depois que as luzes se apagam."</p>
+                    <p class="font-montserrat text-sm">— Jornal da Cultura</p>
+                </div>
+                
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-blood" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <p class="italic mb-4">"Brutal e necessário. A Cia Subversão reafirma seu compromisso com um teatro que não apenas entretém, mas provoca, incomoda e transforma."</p>
+                    <p class="font-montserrat text-sm">— Portal Cena Aberta</p>
+                </div>
+                
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <p class="italic mb-4">"Saí do teatro tremendo. 'Carne Crua' é uma experiência visceral que nos coloca cara a cara com realidades que preferimos ignorar. Teatro urgente e necessário."</p>
+                    <p class="font-montserrat text-sm">— @teatroemmovimento (Instagram)</p>
+                </div>
+                
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <p class="italic mb-4">"Nunca vi nada parecido. A forma como os atores entregam seus corpos e almas para essa peça é de uma generosidade assustadora. Imperdível para quem acredita no poder transformador da arte."</p>
+                    <p class="font-montserrat text-sm">— Espectador (sessão de 12/05/2023)</p>
+                </div>
+                
+                <div class="bg-dark p-6 border border-blood/20 shadow-md fade-in">
+                    <p class="italic mb-4">"A Cia Subversão consegue o raro feito de criar um espetáculo politicamente contundente sem cair em didatismos ou panfletagem. A poesia está na crueza, e a beleza na verdade exposta sem filtros."</p>
+                    <p class="font-montserrat text-sm">— Blog Palco Alternativo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Galeria -->
+    <section id="galeria" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-montserrat font-bold mb-12 text-center">GALERIA</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Gallery items with SVG placeholders -->
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(0)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <circle cx="200" cy="150" r="80" fill="#6E6E6E" fill-opacity="0.3"/>
+                        <path d="M100,200 C150,150 250,150 300,200" stroke="#6E6E6E" stroke-width="2" fill="none"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">CENA 1</text>
+                    </svg>
+                </div>
+                
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(1)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <rect x="100" y="100" width="200" height="100" fill="#6E6E6E" fill-opacity="0.3"/>
+                        <line x1="50" y1="50" x2="350" y2="250" stroke="#6E6E6E" stroke-width="2"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">CENA 2</text>
+                    </svg>
+                </div>
+                
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(2)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <polygon points="200,50 250,150 150,150" fill="#6E6E6E" fill-opacity="0.3"/>
+                        <circle cx="200" cy="200" r="50" fill="none" stroke="#6E6E6E" stroke-width="2"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">CENA 3</text>
+                    </svg>
+                </div>
+                
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(3)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <ellipse cx="200" cy="150" rx="120" ry="80" fill="#6E6E6E" fill-opacity="0.2"/>
+                        <path d="M150,100 L250,200 M250,100 L150,200" stroke="#6E6E6E" stroke-width="2"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">BASTIDORES</text>
+                    </svg>
+                </div>
+                
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(4)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <rect x="100" y="75" width="200" height="150" fill="none" stroke="#6E6E6E" stroke-width="2"/>
+                        <circle cx="150" cy="125" r="25" fill="#6E6E6E" fill-opacity="0.3"/>
+                        <circle cx="250" cy="125" r="25" fill="#6E6E6E" fill-opacity="0.3"/>
+                        <path d="M150,200 C175,225 225,225 250,200" stroke="#6E6E6E" stroke-width="2" fill="none"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">ENSAIO</text>
+                    </svg>
+                </div>
+                
+                <div class="gallery-item cursor-pointer fade-in" onclick="openLightbox(5)">
+                    <svg class="w-full aspect-[4/3]" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        <path d="M100,150 C150,50 250,50 300,150 C250,250 150,250 100,150 Z" fill="#6E6E6E" fill-opacity="0.2" stroke="#6E6E6E" stroke-width="2"/>
+                        <text x="200" y="150" font-family="Montserrat" font-size="14" fill="#ffffff" text-anchor="middle">APRESENTAÇÃO</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <div class="relative">
+                <button class="absolute top-4 right-4 text-white bg-blood/80 rounded-full p-1" onclick="closeLightbox()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <img id="lightbox-img" src="" alt="Imagem ampliada">
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Teaser -->
+    <section id="teaser" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-montserrat font-bold mb-12 text-center">TEASER</h2>
+            
+            <h3 class="text-2xl font-montserrat text-center mb-8 fade-in">Assista ao teaser oficial de Carne Crua</h3>
+            
+            <div class="max-w-3xl mx-auto fade-in">
+                <div class="relative pb-[56.25%] h-0 overflow-hidden bg-dark border border-blood/30">
+                    <!-- SVG placeholder for video -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blood opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="mt-4 text-center font-montserrat">Clique para assistir ao teaser oficial</p>
+                        <p class="mt-2 text-sm text-gray-400">Vídeo incorporado do YouTube/Vimeo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black section">
+        <div class="container mx-auto px-4">
+            <h2 class="title-text text-4xl md:text-5xl mb-12 text-center">Agenda / Contato</h2>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <!-- Agenda -->
+<div class="md:w-1/2">
+  <h3 class="text-2xl mb-6 text-[#6E6E6E] font-bold">Próximas Apresentações</h3>
+
+  <!-- AVISO TEMPORÁRIO -->
+  <div class="bg-black border border-[#6E6E6E] p-6 text-center">
+    <p class="text-gray-400 text-lg">Sem apresentações agendadas no momento.</p>
+    <p class="text-sm mt-2">Novas datas serão divulgadas em breve.</p>
+  </div>
+
+  <!-- AGENDA OCULTADA -->
+  <!--
+  <div class="bg-black border border-[#6E6E6E] p-6">
+    <div class="agenda-item mb-6 pb-6">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">15 de Outubro, 2023</span>
+        <span class="bg-[#6E6E6E] px-3 py-1 text-sm">20:00</span>
+      </div>
+      <p class="mb-2">Teatro Municipal</p>
+      <p class="text-sm text-gray-400">Rua das Artes, 123 - Centro</p>
+    </div>
+
+    <div class="agenda-item mb-6 pb-6">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">22 de Outubro, 2023</span>
+        <span class="bg-[#6E6E6E] px-3 py-1 text-sm">19:30</span>
+      </div>
+      <p class="mb-2">Centro Cultural</p>
+      <p class="text-sm text-gray-400">Av. da Cultura, 456 - Jardim</p>
+    </div>
+
+    <div class="agenda-item">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-xl font-bold">29 de Outubro, 2023</span>
+        <span class="bg-[#6E6E6E] px-3 py-1 text-sm">20:00</span>
+      </div>
+      <p class="mb-2">Teatro Alternativo</p>
+      <p class="text-sm text-gray-400">Rua dos Artistas, 789 - Bairro Novo</p>
+    </div>
+  </div>
+  -->
+</div>
+                
+                <!-- Contact -->
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl mb-6 text-[#6E6E6E] font-bold">Entre em Contato</h3>
+                    <div class="bg-black border border-[#6E6E6E] p-6">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-[#6E6E6E] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </div>
+                            <a href="https://instagram.com/ciasubversao" target="_blank" class="hover:text-[#6E6E6E] transition-colors">
+                                INSTAGRAM
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-[#6E6E6E] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                                </svg>
+                            </div>
+                            <a href="https://wa.me/5511964658950" target="_blank" class="hover:text-[#6E6E6E] transition-colors">
+                                WHATSAPP
+                            </a>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-[#6E6E6E] flex items-center justify-center mr-4 contact-icon">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                                </svg>
+                            </div>
+                            <a href="mailto:ciasubversao@gmail.com" class="hover:text-[#6E6E6E] transition-colors">
+                                E-MAIL
+                            </a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-10 bg-black border-t border-[#6E6E6E">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-white">
+  CARNE<span class="text-[#6E6E6E]"> CRUA</span></h2>
+            <div class="flex justify-center space-x-6">
+                <a href="https://instagram.com/ciasubversao" target="_blank" class="text-gray-400 hover:text-[#6E6E6E] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="mailto:ciasubversao@gmail.com" class="text-gray-400 hover:text-[#6E6E6E] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                    </svg>
+                </a>
+                <a href="https://wa.me/5511964658950" target="_blank" class="text-gray-400 hover:text-[#6E6E6E] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+ <!-- Botão centralizado com efeito de brilho -->
+<div class="flex flex-col items-center gap-4 mt-8">
+    <!-- Botão Rider Técnico -->
+    <a href="LINK_DO_RIDER" 
+       class="bg-[#6E6E6E] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Rider Técnico
+    </a>
+
+    <!-- Botão Proposta do Espetáculo -->
+    <a href="LINK_DA_PROPOSTA" 
+       class="bg-[#6E6E6E] hover:brightness-125 text-white px-8 py-3 rounded-sm flex items-center justify-center transition">
+       <i class="fas fa-download mr-2"></i> Proposta do Espetáculo
+    </a>
+</div>
+        
+    </footer>
+
+     <!-- Copyright -->
+            <div class="mt-12 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
+                <p> ©2025 Cia Subversão. CARNE CRUA Espetáculo da Cia Subversão.</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox images array -->
+    <script>
+        // Array of SVG images for the lightbox
+        const galleryImages = [
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><circle cx="400" cy="300" r="160" fill="%23800020" fill-opacity="0.3"/><path d="M200,400 C300,300 500,300 600,400" stroke="%23800020" stroke-width="4" fill="none"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">CENA 1</text></svg>',
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><rect x="200" y="200" width="400" height="200" fill="%23800020" fill-opacity="0.3"/><line x1="100" y1="100" x2="700" y2="500" stroke="%23800020" stroke-width="4"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">CENA 2</text></svg>',
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><polygon points="400,100 500,300 300,300" fill="%23800020" fill-opacity="0.3"/><circle cx="400" cy="400" r="100" fill="none" stroke="%23800020" stroke-width="4"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">CENA 3</text></svg>',
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><ellipse cx="400" cy="300" rx="240" ry="160" fill="%23800020" fill-opacity="0.2"/><path d="M300,200 L500,400 M500,200 L300,400" stroke="%23800020" stroke-width="4"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">BASTIDORES</text></svg>',
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><rect x="200" y="150" width="400" height="300" fill="none" stroke="%23800020" stroke-width="4"/><circle cx="300" cy="250" r="50" fill="%23800020" fill-opacity="0.3"/><circle cx="500" cy="250" r="50" fill="%23800020" fill-opacity="0.3"/><path d="M300,400 C350,450 450,450 500,400" stroke="%23800020" stroke-width="4" fill="none"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">ENSAIO</text></svg>',
+            'data:image/svg+xml;utf8,<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="600" fill="%231a1a1a"/><path d="M200,300 C300,100 500,100 600,300 C500,500 300,500 200,300 Z" fill="%23800020" fill-opacity="0.2" stroke="%23800020" stroke-width="4"/><text x="400" y="300" font-family="Montserrat" font-size="28" fill="%23ffffff" text-anchor="middle">APRESENTAÇÃO</text></svg>'
+        ];
+
+        // Function to open lightbox
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = galleryImages[index];
+            lightbox.style.display = 'flex';
+            
+            // Prevent event bubbling
+            event.stopPropagation();
+        }
+
+        // Function to close lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+        }
+
+        // Mobile menu toggle
+        document.getElementById('menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('open');
+        });
+
+        document.getElementById('close-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('open');
+        });
+
+        // Intersection Observer for fade-in elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Create blood drips
+            createBloodDrips();
+            
+            // Active menu item based on scroll position
+            const sections = document.querySelectorAll('section');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                menuItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href').substring(1) === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Create blood drips
+        function createBloodDrips() {
+            const container = document.getElementById('blood-drips');
+            const numberOfDrips = 15;
+            
+            for (let i = 0; i < numberOfDrips; i++) {
+                const drip = document.createElement('div');
+                drip.classList.add('blood-drip');
+                
+                const left = Math.random() * 100;
+                const height = Math.random() * 200 + 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                drip.style.left = `${left}%`;
+                drip.style.height = `${height}px`;
+                drip.style.animation = `drip ${duration}s ${delay}s infinite`;
+                
+                container.appendChild(drip);
+            }
+        }
+
+        // Blood drip animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes drip {
+                0% {
+                    height: 0;
+                    top: 0;
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+                100% {
+                    height: 100vh;
+                    top: 0;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'952be11d23299411',t:'MTc1MDQyODkzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
