@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subeverta - Apoie o Teatro Vivo da Cia Subversão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --wine: #800020;
+            --wine-light: #9a0026;
+            --gold: #D4AF37;
+            --gold-muted: rgba(212, 55, 55, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23111'/%3E%3Cpath d='M0,300 Q200,200 400,300 T800,300' stroke='%23333' fill='none' stroke-width='2'/%3E%3Cellipse cx='400' cy='300' rx='350' ry='150' stroke='%23444' fill='none' stroke-width='1'/%3E%3Cellipse cx='400' cy='300' rx='300' ry='120' stroke='%23555' fill='none' stroke-width='1'/%3E%3Cpath d='M200,450 L600,450' stroke='%23666' stroke-width='3'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(128, 0, 32, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+        }
+        
+        .btn-wine {
+            background-color: var(--wine);
+            color: white;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-wine:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(128, 0, 32, 0.5);
+            background-color: var(--wine-light);
+        }
+        
+        .btn-wine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+        
+        .btn-wine:hover::after {
+            animation: shine 1.5s;
+        }
+        
+        @keyframes shine {
+            0% {
+                opacity: 0;
+                left: -50%;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                left: 150%;
+            }
+        }
+        
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+            pointer-events: none;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.2);
+            border-color: rgba(128, 0, 32, 0.5);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+        
+        .modal-content {
+            background-color: #111;
+            border: 1px solid var(--wine);
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            animation: modalFade 0.3s ease;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--wine);
+        }
+        
+        .gold-text {
+            color: var(--gold-muted);
+        }
+        
+        .payment-option {
+            border: 1px solid rgba(128, 0, 32, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--wine);
+            background-color: rgba(128, 0, 32, 0.2);
+        }
+        
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.5;
+            z-index: 1;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        
+        .footer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--wine), transparent);
+        }
+        
+        .social-icon {
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            color: var(--wine);
+            transform: translateY(-3px);
+        }
+        
+        .wine-text {
+            color: var(--wine);
+        }
+        
+        .check-mark {
+            color: var(--wine);
+        }
+    </style>
+</head>
+<body class="relative">
+    <div class="texture-overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero relative">
+        <div class="container mx-auto z-10">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-wider">Subeverta com a gente</h1>
+            <h2 class="text-xl md:text-2xl mb-6 font-light">Apoie o Teatro Vivo da Cia Subversão</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto italic">Contribua com nossa arte e receba algo de volta</p>
+            <a href="#planos" class="btn-wine px-8 py-4 rounded-sm text-lg font-medium inline-block">Escolher um plano de apoio</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="#800020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+    
+    <!-- Planos Section -->
+    <section id="planos" class="py-20 px-4 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 text-center">O que você ganha contribuindo?</h2>
+            <p class="text-center mb-12 text-lg max-w-2xl mx-auto">Escolha uma forma de apoiar nosso trabalho e receba contrapartidas exclusivas</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                <!-- Card 1 -->
+                <div class="card p-6 rounded-sm flex flex-col h-full">
+                    <div class="text-4xl mb-3 text-center">🪶</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Espectador Simples</h3>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$10<span class="text-sm text-white">/mês</span></p>
+                    <p class="mb-6 text-center flex-grow">Seu primeiro passo para apoiar nosso teatro independente</p>
+                    <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal1')">Ver recompensas</button>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card p-6 rounded-sm flex flex-col h-full">
+                    <div class="text-4xl mb-3 text-center">🎭</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Teatro é Resistência</h3>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$25<span class="text-sm text-white">/mês</span></p>
+                    <p class="mb-6 text-center flex-grow">Fortaleça a resistência cultural e ganhe benefícios especiais</p>
+                    <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal2')">Ver recompensas</button>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card p-6 rounded-sm flex flex-col h-full">
+                    <div class="text-4xl mb-3 text-center">🌟</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Apoiador de Cena</h3>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$50<span class="text-sm text-white">/mês</span></p>
+                    <p class="mb-6 text-center flex-grow">Seja parte essencial de nossas produções teatrais</p>
+                    <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal3')">Ver recompensas</button>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card p-6 rounded-sm flex flex-col h-full">
+                    <div class="text-4xl mb-3 text-center">👑</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Mecenas Subversivo</h3>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$100<span class="text-sm text-white">/mês</span></p>
+                    <p class="mb-6 text-center flex-grow">Torne-se um patrono da arte com acesso privilegiado</p>
+                    <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal4')">Ver recompensas</button>
+                </div>
+                
+                <!-- Card 5 -->
+                <div class="card p-6 rounded-sm flex flex-col h-full">
+                    <div class="text-4xl mb-3 text-center">🖤</div>
+                    <h3 class="text-xl font-bold mb-2 text-center">Padrinho da Peça</h3>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$300<span class="text-sm text-white"> único</span></p>
+                    <p class="mb-6 text-center flex-grow">Eternize seu nome em nossa próxima produção teatral</p>
+                    <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal5')">Ver recompensas</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer py-16 px-4">
+        <div class="container mx-auto text-center">
+            <p class="text-2xl md:text-3xl font-bold italic mb-12 max-w-3xl mx-auto leading-relaxed">
+                "Se você ama teatro independente, essa é sua chance de subir ao palco com a gente."
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+  <!-- Card 1 - Pérolas -->
+  <div class="bg-[#1a1a1a] rounded-sm shadow-lg overflow-hidden">
+    <img src="https://i.ibb.co/ym2pMyJz/perolas-sub.png" class="w-full aspect-[16/10] object-contain rounded-sm" />
+    <div class="p-4 text-white">
+      <h4 class="text-lg font-bold mb-2">Pérolas</h4>
+      <p class="text-sm opacity-80">Uma fábula crua e poética inspirada em Plínio Marcos, com dois corpos que dançam entre violência e sobrevivência.</p>
+    </div>
+  </div>
+
+  <!-- Card 2 - Click -->
+  <div class="bg-[#1a1a1a] rounded-sm shadow-lg overflow-hidden">
+    <img src="https://i.ibb.co/PvCj5GDD/click-sub.png" class="w-full aspect-[16/10] object-contain rounded-sm" />
+    <div class="p-4 text-white">
+      <h4 class="text-lg font-bold mb-2">Click</h4>
+      <p class="text-sm opacity-80">Um thriller psicológico sobre abandono, loucura e a tênue linha entre amor e morte.</p>
+    </div>
+  </div>
+
+  <!-- Card 3 - Alice -->
+  <div class="bg-[#1a1a1a] rounded-sm shadow-lg overflow-hidden">
+    <img src="https://i.ibb.co/spPScrYC/alice-sub.png" class="w-full aspect-[16/10] object-contain rounded-sm" />
+    <div class="p-4 text-white">
+      <h4 class="text-lg font-bold mb-2">Alice</h4>
+      <p class="text-sm opacity-80">Uma jornada visceral e simbólica pelos transtornos da mente — uma Alice contemporânea em busca de si.</p>
+    </div>
+  </div>
+
+  <!-- Card 4 - Carne Crua -->
+  <div class="bg-[#1a1a1a] rounded-sm shadow-lg overflow-hidden">
+    <img src="https://i.ibb.co/fd4j36bF/carnecrua-sub.png class="w-full aspect-[16/10] object-contain rounded-sm" />
+    <div class="p-4 text-white">
+      <h4 class="text-lg font-bold mb-2">Carne Crua</h4>
+      <p class="text-sm opacity-80">Fragmentos de corpos marginalizados num grito contra a hipocrisia social. Espetáculo-rasgo, nu e cru.</p>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="https://instagram.com/ciasubversao" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="mailto:contato@ciasubversao.com.br" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://ciasubversao.com.br" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </a>
+            </div>
+
+              <!-- Bloco de Apoio com QR Code -->
+<div class="mt-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+  <!-- QR Code -->
+  <div class="w-40 h-40 flex-shrink-0">
+    <img src="https://i.ibb.co/9HLQtsY3/Captura-de-Tela-2025-06-11-a-s-15-03-49.png" alt="QR Code para doação" class="w-full h-full object-contain rounded-lg border border-gray-700">
+  </div>
+           <!-- Texto -->
+  <div class="text-gray-300 max-w-xl">
+    <h3 class="text-lg font-bold text-blood-red mb-2">Ajude a manter nossa arte viva</h3>
+    <p class="text-sm leading-relaxed mb-3">
+      Somos artistas independentes e seguimos firmes graças ao apoio coletivo.<br>
+      Se você acredita no poder da arte, qualquer contribuição — de qualquer valor — será recebida com gratidão e transformada em resistência poética.
+    </p>
+    <p class="text-white font-bold text-base bg-zinc-800 px-4 py-2 rounded-lg inline-block">
+      CHAVE PIX: <span class="text-white">ciasubversao@gmail.com</span>
+    </p>
+  </div>
+</div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2018 Cia Subversão. Todos os direitos reservados.<br>
+                    CNPJ: 61.401.375/0001-58
+                </p>
+                <div>
+    </footer>
+    
+    <!-- Modals -->
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content p-8 rounded-sm">
+            <span class="close-modal" onclick="closeModal('modal1')">×</span>
+            <div class="text-4xl mb-4 text-center">🪶</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Espectador Simples</h3>
+            <p class="text-3xl font-bold mb-6 text-center wine-text">R$10<span class="text-sm text-white">/mês</span></p>
+            
+            <div class="mb-8">
+                <p class="mb-4 italic text-center">"Seu primeiro passo para fazer parte da nossa comunidade teatral. Como um Espectador Simples, você já começa a transformar a arte independente."</p>
+                
+                <h4 class="text-xl mb-3 font-bold">O que você recebe:</h4>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Seu nome no mural virtual de apoiadores</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Acesso ao Close Friends da Cia nas redes sociais</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Lives exclusivas sobre nossos processos criativos</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 class="text-xl mb-4 font-bold text-center">Escolha como apoiar:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Cartão de Credito</span>
+                    <span class="text-sm opacity-70">Pagamento recorrente</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Pix</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Boleto</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+            </div>
+            
+            <div class="text-center">
+            <a href="https://mpago.la/2KAD4t4" target="_blank" class="btn-wine px-8 py-3 rounded-sm inline-block text-white bg-[#800020] hover:brightness-125 transition-all shadow-md">
+            Confirmar apoio de R$50/mês
+            </a>
+           </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content p-8 rounded-sm">
+            <span class="close-modal" onclick="closeModal('modal2')">×</span>
+            <div class="text-4xl mb-4 text-center">🎭</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Teatro é Resistência</h3>
+            <p class="text-3xl font-bold mb-6 text-center wine-text">R$25<span class="text-sm text-white">/mês</span></p>
+            
+            <div class="mb-8">
+                <p class="mb-4 italic text-center">"Fortaleça a resistência cultural e seja parte da transformação. Com seu apoio, mantemos viva a chama do teatro independente."</p>
+                
+                <h4 class="text-xl mb-3 font-bold">O que você recebe:</h4>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Tudo da cota anterior</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Programa digital da peça atual</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Participação no sorteio mensal de par de ingressos</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 class="text-xl mb-4 font-bold text-center">Escolha como apoiar:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Cartão de Credito</span>
+                    <span class="text-sm opacity-70">Pagamento recorrente</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Pix</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Boleto</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+            </div>
+            
+             <div class="text-center">
+            <a href="https://mpago.li/2oz6SvZ" target="_blank" class="btn-wine px-8 py-3 rounded-sm inline-block text-white bg-[#800020] hover:brightness-125 transition-all shadow-md">
+            Confirmar apoio de R$25/mês
+            </a>
+           </div>
+        </div>
+    </div>
+    
+    <!-- Modal 3 -->
+    <div id="modal3" class="modal">
+        <div class="modal-content p-8 rounded-sm">
+            <span class="close-modal" onclick="closeModal('modal3')">×</span>
+            <div class="text-4xl mb-4 text-center">🌟</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Apoiador de Cena</h3>
+            <p class="text-3xl font-bold mb-6 text-center wine-text">R$50<span class="text-sm text-white">/mês</span></p>
+            
+            <div class="mb-8">
+                <p class="mb-4 italic text-center">"Seja parte essencial de nossas produções teatrais. Como Apoiador de Cena, você ajuda a construir cada momento mágico no palco."</p>
+                
+                <h4 class="text-xl mb-3 font-bold">O que você recebe:</h4>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Tudo das cotas anteriores</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Brinde digital exclusivo (zine, wallpaper, minidoc)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Participação no sorteio de item simbólico de cena</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 class="text-xl mb-4 font-bold text-center">Escolha como apoiar:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Cartão de Credito</span>
+                    <span class="text-sm opacity-70">Pagamento recorrente</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Pix</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Boleto</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+            </div>
+            
+             <div class="text-center">
+            <a href="https://mpago.la/2KAD4t4" target="_blank" class="btn-wine px-8 py-3 rounded-sm inline-block text-white bg-[#800020] hover:brightness-125 transition-all shadow-md">
+            Confirmar apoio de R$50/mês
+            </a>
+           </div>
+        </div>
+    </div>
+    
+    <!-- Modal 4 -->
+    <div id="modal4" class="modal">
+        <div class="modal-content p-8 rounded-sm">
+            <span class="close-modal" onclick="closeModal('modal4')">×</span>
+            <div class="text-4xl mb-4 text-center">👑</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Mecenas Subversivo</h3>
+            <p class="text-3xl font-bold mb-6 text-center wine-text">R$100<span class="text-sm text-white">/mês</span></p>
+            
+            <div class="mb-8">
+                <p class="mb-4 italic text-center">"Torne-se um verdadeiro patrono da arte com acesso privilegiado. Como Mecenas Subversivo, você é fundamental para nossa existência."</p>
+                
+                <h4 class="text-xl mb-3 font-bold">O que você recebe:</h4>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Tudo das cotas anteriores</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Um ingresso gratuito por mês</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Convite para ensaio geral</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Cartão físico assinado pelo elenco</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Participação no sorteio mensal de livro que inspirou a peça</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 class="text-xl mb-4 font-bold text-center">Escolha como apoiar:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Cartão de Credito</span>
+                    <span class="text-sm opacity-70">Pagamento recorrente</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Pix</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Boleto</span>
+                    <span class="text-sm opacity-70">Pagamento mensal</span>
+                </button>
+            </div>
+            
+            <div class="text-center">
+            <a href="https://mpago.la/29odiQm" target="_blank" class="btn-wine px-8 py-3 rounded-sm inline-block text-white bg-[#800020] hover:brightness-125 transition-all shadow-md">
+            Confirmar apoio de R$100/mês
+            </a>
+           </div>
+        </div>
+    </div>
+    
+    <!-- Modal 5 -->
+    <div id="modal5" class="modal">
+        <div class="modal-content p-8 rounded-sm">
+            <span class="close-modal" onclick="closeModal('modal5')">×</span>
+            <div class="text-4xl mb-4 text-center">🖤</div>
+            <h3 class="text-2xl font-bold mb-2 text-center">Padrinho da Peça</h3>
+            <p class="text-3xl font-bold mb-6 text-center wine-text">R$300<span class="text-sm text-white"> único</span></p>
+            
+            <div class="mb-8">
+                <p class="mb-4 italic text-center">"Eternize seu nome em nossa próxima produção teatral. Como Padrinho da Peça, você se torna parte da história do teatro independente."</p>
+                
+                <h4 class="text-xl mb-3 font-bold">O que você recebe:</h4>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Seu nome nos créditos da peça</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>4 ingressos VIP para a estreia</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Kit digital completo da produção</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Brinde físico simbólico da peça</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Foto exclusiva com o elenco</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Convite para ensaio fechado</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="check-mark mr-2">✓</span>
+                        <span>Participação no sorteio para aula com a Cia</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <h4 class="text-xl mb-4 font-bold text-center">Escolha como apoiar:</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Cartão de Credito</span>
+                    <span class="text-sm opacity-70">Pagamento único</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Pix</span>
+                    <span class="text-sm opacity-70">Pagamento único</span>
+                </button>
+                <button class="payment-option p-4 rounded-sm flex flex-col items-center justify-center">
+                    <span class="text-lg mb-2">Boleto</span>
+                    <span class="text-sm opacity-70">Pagamento único</span>
+                </button>
+            </div>
+            
+            <div class="text-center">
+            <a href="https://mpago.la/1sk2TBj" target="_blank" class="btn-wine px-8 py-3 rounded-sm inline-block text-white bg-[#800020] hover:brightness-125 transition-all shadow-md">
+            Confirmar apoio de R$100/mês
+            </a>
+           </div>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.getElementsByClassName('modal');
+                for (let i = 0; i < modals.length; i++) {
+                    if (modals[i].style.display === 'block') {
+                        modals[i].style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9564c022c00c9411',t:'MTc1MTAyNTI3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
