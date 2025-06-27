@@ -16,7 +16,7 @@
     <title>Subeverta - Apoie o Teatro Vivo da Cia Subversão</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -251,6 +251,9 @@
         .check-mark {
             color: var(--wine);
         }
+        .glowing-text {
+            text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff1a1a, 0 0 30px #800020;
+        }
     </style>
 </head>
 <body class="relative">
@@ -259,7 +262,8 @@
     <!-- Hero Section -->
     <section class="hero relative">
         <div class="container mx-auto z-10">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-wider">Subeverta com a gente</h1>
+             <h1 class="title-font text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-white tracking-tight">
+                SUB <span class="text-black glowing-text">VERTA</span>
             <h2 class="text-xl md:text-2xl mb-6 font-light">Apoie o Teatro Vivo da Cia Subversão</h2>
             <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto italic">Contribua com nossa arte e receba algo de volta</p>
             <a href="#planos" class="btn-wine px-8 py-4 rounded-sm text-lg font-medium inline-block">Escolher um plano de apoio</a>
@@ -280,45 +284,45 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <!-- Card 1 -->
                 <div class="card p-6 rounded-sm flex flex-col h-full">
-                    <div class="text-4xl mb-3 text-center">🪶</div>
+                    <div class="text-4xl mb-3 text-center"></div>
                     <h3 class="text-xl font-bold mb-2 text-center">Espectador Simples</h3>
-                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$10<span class="text-sm text-white">/mês</span></p>
+                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$10<span class="text-sm text-black glowing-text">/mês</span></p>
                     <p class="mb-6 text-center flex-grow">Seu primeiro passo para apoiar nosso teatro independente</p>
                     <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal1')">Ver recompensas</button>
                 </div>
                 
                 <!-- Card 2 -->
                 <div class="card p-6 rounded-sm flex flex-col h-full">
-                    <div class="text-4xl mb-3 text-center">🎭</div>
+                    <div class="text-4xl mb-3 text-center"></div>
                     <h3 class="text-xl font-bold mb-2 text-center">Teatro é Resistência</h3>
-                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$25<span class="text-sm text-white">/mês</span></p>
+                    <p class="text-2xl font-bold mb-4 text-center text-black glowing-text">R$25<span class="text-sm text-black glowing-text">/mês</span></p>
                     <p class="mb-6 text-center flex-grow">Fortaleça a resistência cultural e ganhe benefícios especiais</p>
                     <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal2')">Ver recompensas</button>
                 </div>
                 
                 <!-- Card 3 -->
                 <div class="card p-6 rounded-sm flex flex-col h-full">
-                    <div class="text-4xl mb-3 text-center">🌟</div>
+                    <div class="text-4xl mb-3 text-center"></div>
                     <h3 class="text-xl font-bold mb-2 text-center">Apoiador de Cena</h3>
-                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$50<span class="text-sm text-white">/mês</span></p>
+                    <p class="text-2xl font-bold mb-4 text-center text-black glowing-text">R$50<span class="text-sm text-black glowing-text">/mês</span></p>
                     <p class="mb-6 text-center flex-grow">Seja parte essencial de nossas produções teatrais</p>
                     <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal3')">Ver recompensas</button>
                 </div>
                 
                 <!-- Card 4 -->
                 <div class="card p-6 rounded-sm flex flex-col h-full">
-                    <div class="text-4xl mb-3 text-center">👑</div>
+                    <div class="text-4xl mb-3 text-center"></div>
                     <h3 class="text-xl font-bold mb-2 text-center">Mecenas Subversivo</h3>
-                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$100<span class="text-sm text-white">/mês</span></p>
+                    <p class="text-2xl font-bold mb-4 text-center text-black glowing-text">R$100<span class="text-sm text-black glowing-text">/mês</span></p>
                     <p class="mb-6 text-center flex-grow">Torne-se um patrono da arte com acesso privilegiado</p>
                     <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal4')">Ver recompensas</button>
                 </div>
                 
                 <!-- Card 5 -->
                 <div class="card p-6 rounded-sm flex flex-col h-full">
-                    <div class="text-4xl mb-3 text-center">🖤</div>
+                    <div class="text-4xl mb-3 text-center"></div>
                     <h3 class="text-xl font-bold mb-2 text-center">Padrinho da Peça</h3>
-                    <p class="text-2xl font-bold mb-4 text-center wine-text">R$300<span class="text-sm text-white"> único</span></p>
+                    <p class="text-2xl font-bold mb-4 text-center text-black glowing-text">R$300<span class="text-sm text-black glowing-text"> mensal</span></p>
                     <p class="mb-6 text-center flex-grow">Eternize seu nome em nossa próxima produção teatral</p>
                     <button class="btn-wine w-full py-3 rounded-sm mt-auto" onclick="openModal('modal5')">Ver recompensas</button>
                 </div>
@@ -370,7 +374,9 @@
   </div>
 </div>
 <br>
-<br>
+
+
+            <footer class="footer py-16 px-4"></footer>
             <div class="flex justify-center space-x-8 mb-8">
                 <a href="https://instagram.com/ciasubversao" target="_blank" class="social-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
@@ -394,13 +400,13 @@
                 </a>
             </div>
 
-              <!-- Bloco de Apoio com QR Code -->
+               <!-- Bloco de Apoio com QR Code -->
 <div class="mt-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
   <!-- QR Code -->
   <div class="w-40 h-40 flex-shrink-0">
     <img src="https://i.ibb.co/WWwQXNwc/Whats-App-Image-2025-06-27-at-11-26-18.jpg" alt="QR Code para doação" class="w-full h-full object-contain rounded-lg border border-gray-700">
   </div>
-           <!-- Texto -->
+  <!-- Texto -->
   <div class="text-gray-300 max-w-xl">
     <h3 class="text-lg font-bold text-blood-red mb-2">Ajude a manter nossa arte viva</h3>
     <p class="text-sm leading-relaxed mb-3">
